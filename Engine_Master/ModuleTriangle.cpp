@@ -1,10 +1,8 @@
 #include "ModuleTriangle.h"
-#include "MathGeoLib/include/Geometry/Frustum.h"
-#include "MathGeoLib/include/Math/MathAll.h"
+#include "Libraries/MathGeoLib/include/Geometry/Frustum.h"
+#include "Libraries/MathGeoLib/include/Math/MathAll.h"
 #include "Application.h"
 #include "ModuleProgram.h"
-
-
 
 
 ModuleTriangle::ModuleTriangle()
@@ -29,39 +27,26 @@ bool ModuleTriangle::Init()
 	frustum.verticalFov = math::pi / 4.0f; 
 	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) *aspect);
 
-	float4x4 proj = frustum.ProjectionMatrix();
-	float4x4 model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(math::pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
+	proj = frustum.ProjectionMatrix();
+	model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(math::pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
 
-	float4x4 view = LookAt(math::float3(0.0f, 1.f, 4.0f), math::float3(0.0f, 0.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
-	float4x4 transform = proj * view *float4x4(model);
+	view = LookAt(math::float3(0.0f, 1.f, 4.0f), math::float3(0.0f, 0.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
 
 
 	float3 v1 = { -1.0f, -1.0f, 0.0f };
 	float3 v2 = { 1.0f, -1.0f, 0.0f };
 	float3 v3 = { 0.0f, 1.0f, 0.0f };
 
-	float4 v1_trans = transform*float4(v1, 1.0);
-	float4 v2_trans = transform*float4(v2, 1.0);
-	float4 v3_trans = transform*float4(v3, 1.0);
-
-	
-	float3 v1_res = (v1_trans / v1_trans.w).xyz();
-	float3 v2_res = (v2_trans / v2_trans.w).xyz();
-	float3 v3_res = (v3_trans / v3_trans.w).xyz();
-
-
 
 	//create the figure
 	float3 buffer_data[] = {
-		v1_res, v2_res, v3_res	
+		v1, v2, v3
 	};
-
+	
 	glGenBuffers(1, &vbo); 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo); 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(buffer_data), buffer_data, GL_STATIC_DRAW); 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
 
 	return true;
 }
@@ -103,7 +88,10 @@ update_status ModuleTriangle::Update() {
 		0,                  // stride 
 		(void*)0            // array buffer offset 
 	);
-	glUseProgram(App->program->ID);
+	glUseProgram(App->program->ID);    
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "model"), 1, GL_TRUE, &model[0][0]);    
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "view"), 1, GL_TRUE, &view[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "proj"), 1, GL_TRUE, &proj[0][0]);
 	glDrawArrays(GL_TRIANGLES, 0, 3); // start at 0 and 3 tris            
 	glDisableVertexAttribArray(0);   
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

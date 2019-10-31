@@ -1,7 +1,7 @@
 #pragma once
 #include "Module.h"
-#include "glew-2.1.0-win32/glew-2.1.0/include/GL/glew.h"
-#include "MathGeoLib/include/MathGeoLib.h"
+#include "Libraries/glew-2.1.0-win32/glew-2.1.0/include/GL/glew.h"
+#include "Libraries/MathGeoLib/include/MathGeoLib.h"
 class ModuleProgram :
 	public Module
 {
