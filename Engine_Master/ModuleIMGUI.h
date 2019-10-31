@@ -11,6 +11,7 @@ public:
 	update_status PreUpdate();
 	update_status Update();
 	update_status PostUpdate();
+	bool CleanUp();
 	bool show_demo_window = false;
 
 };

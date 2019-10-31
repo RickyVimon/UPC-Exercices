@@ -25,7 +25,7 @@ bool ModuleRender::Init()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4); 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 
-	context = SDL_GL_CreateContext(App->window->window);
+	SDL_GLContext context = SDL_GL_CreateContext(App->window->window);
 
 	GLenum err = glewInit(); // … check for errors 
 	LOG("Using Glew %s", glewGetString(GLEW_VERSION)); // Should be 2.0

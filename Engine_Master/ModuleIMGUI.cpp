@@ -77,10 +77,14 @@ update_status ModuleIMGUI::Update()
 
 update_status ModuleIMGUI::PostUpdate()
 {
+
+	return UPDATE_CONTINUE;
+}
+
+bool ModuleIMGUI::CleanUp() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
-
-	return UPDATE_CONTINUE;
+	return true;
 }
 
