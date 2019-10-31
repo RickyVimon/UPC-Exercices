@@ -1,6 +1,8 @@
 #include "ModuleTriangle.h"
 #include "MathGeoLib/include/Geometry/Frustum.h"
 #include "MathGeoLib/include/Math/MathAll.h"
+#include "Application.h"
+#include "ModuleProgram.h"
 
 
 
@@ -101,6 +103,7 @@ update_status ModuleTriangle::Update() {
 		0,                  // stride 
 		(void*)0            // array buffer offset 
 	);
+	glUseProgram(App->program->ID);
 	glDrawArrays(GL_TRIANGLES, 0, 3); // start at 0 and 3 tris            
 	glDisableVertexAttribArray(0);   
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
