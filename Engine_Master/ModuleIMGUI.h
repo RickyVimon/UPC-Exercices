@@ -1,6 +1,10 @@
 #pragma once
 #include "Module.h"
+#include "IMGUI/imgui.h"
+#include <iostream> 
+#include <vector> 
 
+using namespace std;
 
 class ModuleIMGUI :	public Module
 {
@@ -12,7 +16,13 @@ public:
 	update_status Update();
 	update_status PostUpdate();
 	bool CleanUp();
-	bool show_demo_window = false;
 
+public:
+	bool show_demo_window = false;
+	bool console_window = false;
+	bool fps_window = false;
+	vector <float> fps_log;
+	bool ScrollToBottom = true;
+	ImGuiTextBuffer Buf;
 };
 

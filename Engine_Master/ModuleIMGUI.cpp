@@ -37,19 +37,12 @@ bool ModuleIMGUI::Init()
 
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-
-
-	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();
-
-	//ImGui::StyleColorsClassic();
-	// Setup Platform/Renderer bindings
-
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer->context);
 	ImGui_ImplOpenGL3_Init(glsl_version);
 	show_demo_window = true;
+	console_window = true;
+
 	bool show_another_window = false;
 
 
@@ -67,8 +60,63 @@ update_status ModuleIMGUI::PreUpdate()
 // Called every draw update
 update_status ModuleIMGUI::Update()
 {
-	if (show_demo_window)
+	
+	if (show_demo_window) {
 		ImGui::ShowDemoWindow(&show_demo_window);
+
+	}
+
+	if (fps_window) {
+		ImGui::Begin("FPS Window", &fps_window);
+		fps_log.push_back(ImGui::GetIO().Framerate);
+		if (fps_log.size() > 50) {
+			char title[50];
+			sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
+			ImGui::PlotHistogram("##framerate", &fps_log[0], fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
+			fps_log.pop_back();
+		}
+		//fps_log.pop_back();
+		ImGui::End();
+	}
+
+	if (console_window) {
+		ImGui::Begin("LOG console", &console_window);
+		if (ImGui::BeginMainMenuBar()) 
+		{
+			if (ImGui::BeginMenu("About")) 
+			{
+				if (ImGui::MenuItem("Author"))
+					LOG("Ricard Vivó Montero");
+				if (ImGui::MenuItem("License"))
+					LOG("Whatever");
+				if (ImGui::MenuItem("Engine"))
+					LOG("AWACHINDOWN IN DA STRIT");
+				ImGui::EndMenu();
+			};
+			if (ImGui::BeginMenu("Tools")) 
+			{
+				if (ImGui::MenuItem("Fps graphs"))
+					fps_window = true;
+				if (ImGui::MenuItem("License"))
+					LOG("Whatever");
+				if (ImGui::MenuItem("Engine"))
+					LOG("AWACHINDOWN IN DA STRIT");
+				ImGui::EndMenu();
+
+			};
+			ImGui::EndMainMenuBar();
+		}
+		ImGui::Text("Custom Log Window. (%s)", IMGUI_VERSION);
+		ImGui::Spacing();
+
+		char title[25] = "Application";
+		//sprintf_s(titile, 25, "Framerate %.1f", 1000.0f/ImGui::GetIO().Framerate,	)
+		ImGui::TextUnformatted(Buf.begin()); 
+		if (ScrollToBottom)
+			ImGui::SetScrollHere(1.0f);
+		ScrollToBottom = false;
+		ImGui::End();
+	}
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -87,4 +135,7 @@ bool ModuleIMGUI::CleanUp() {
 	ImGui::DestroyContext();
 	return true;
 }
+
+
+
 
