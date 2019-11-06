@@ -6,6 +6,7 @@
 #include "IMGUI/examples/imgui_impl_opengl3.h"
 #include "IMGUI/examples/imgui_impl_sdl.h"
 #include "ModuleCamera.h"
+#include "Libraries/MathGeoLib/include/Math/MathAll.h"
 
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
 #include <GL/gl3w.h>    // Initialize with gl3wInit()
@@ -109,6 +110,8 @@ update_status ModuleIMGUI::Update()
 			ImGui::BulletText("GitHub: RickyVimon");
 
 		}
+
+		//App camera draw editor
 		if (ImGui::CollapsingHeader("Camera")) {
 
 			if (ImGui::Checkbox("Ground", &App->camera->flag_ground)) {
@@ -116,6 +119,11 @@ update_status ModuleIMGUI::Update()
 			}
 			if (ImGui::Checkbox("Axis", &App->camera->flag_axis)) {
 
+			}
+			float fov = App->camera->frustum.verticalFov;
+			if (ImGui::SliderFloat("Vertical FOV", &fov , 0.01, math::pi, "%.3f", 1.0f))
+			{
+				App->camera->SetFOV(fov);
 			}
 
 		}
