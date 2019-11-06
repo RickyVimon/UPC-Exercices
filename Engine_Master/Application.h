@@ -12,6 +12,7 @@ class ModuleRenderExercise;
 class ModuleTriangle;
 class ModuleIMGUI;
 class ModuleProgram;
+class ModuleCamera;
 
 class Application
 {
@@ -29,8 +30,9 @@ public:
 	ModuleWindow* window = nullptr;
 	ModuleInput* input = nullptr;
 	ModuleTriangle* triangle = nullptr;
-	ModuleIMGUI* imgui = nullptr;
 	ModuleProgram* program = nullptr;
+	ModuleCamera* camera = nullptr;
+	ModuleIMGUI* imgui = nullptr;
 
 private:
 

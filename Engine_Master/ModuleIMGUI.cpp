@@ -5,6 +5,7 @@
 #include "IMGUI/imgui.h"
 #include "IMGUI/examples/imgui_impl_opengl3.h"
 #include "IMGUI/examples/imgui_impl_sdl.h"
+#include "ModuleCamera.h"
 
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
 #include <GL/gl3w.h>    // Initialize with gl3wInit()
@@ -60,11 +61,7 @@ update_status ModuleIMGUI::PreUpdate()
 // Called every draw update
 update_status ModuleIMGUI::Update()
 {
-	
-	if (show_demo_window) {
-		ImGui::ShowDemoWindow(&show_demo_window);
 
-	}
 
 	if (fps_window) {
 		ImGui::Begin("FPS Window", &fps_window);
@@ -105,6 +102,22 @@ update_status ModuleIMGUI::Update()
 
 			};
 			ImGui::EndMainMenuBar();
+		}
+		if (ImGui::CollapsingHeader("About")) {
+			
+			ImGui::Text("Author: Ricard Vivó Montero");
+			ImGui::BulletText("GitHub: RickyVimon");
+
+		}
+		if (ImGui::CollapsingHeader("Camera")) {
+
+			if (ImGui::Checkbox("Ground", &App->camera->flag_ground)) {
+
+			}
+			if (ImGui::Checkbox("Axis", &App->camera->flag_axis)) {
+
+			}
+
 		}
 		ImGui::Text("Custom Log Window. (%s)", IMGUI_VERSION);
 		ImGui::Spacing();

@@ -124,6 +124,7 @@
     <ClCompile Include="Libraries\IMGUI\examples\imgui_impl_opengl3.cpp">
       <Filter>IMGUI</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Libraries\IMGUI\examples\imgui_impl_sdl.h">
       <Filter>IMGUI</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
