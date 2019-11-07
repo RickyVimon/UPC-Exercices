@@ -46,10 +46,7 @@ update_status ModuleCamera::Update()
 		ShowAxis();
 	}
 
-	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "model"), 1, GL_TRUE, &model[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "view"), 1, GL_TRUE, &view[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "proj"), 1, GL_TRUE, &proj[0][0]);
-	
+
 	return UPDATE_CONTINUE;
 }
 

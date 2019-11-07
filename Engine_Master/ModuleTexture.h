@@ -18,5 +18,6 @@ public:
 	ILuint Lena;
 	ILuint Width, Height;
 	GLuint Texture;
+	ILubyte *Data;
 };
 

@@ -23,6 +23,7 @@ bool ModuleTexture::Init()
 	Width = ilGetInteger(IL_IMAGE_WIDTH);
 	Height = ilGetInteger(IL_IMAGE_HEIGHT);
 	ilutRenderer(ILUT_OPENGL);
+	Data = ilGetData();
 	Texture = ilutGLBindTexImage();
 	ilDeleteImages(1, &Lena);
 	return true; 

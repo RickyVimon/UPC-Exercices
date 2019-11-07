@@ -4,7 +4,7 @@
 #include "Application.h"
 #include "ModuleProgram.h"
 #include "ModuleTexture.h"
-
+#include "ModuleCamera.h"
 
 ModuleTriangle::ModuleTriangle()
 {
@@ -51,21 +51,34 @@ bool ModuleTriangle::Init()
 
 
 update_status ModuleTriangle::Update() {
-	glEnableVertexAttribArray(1); // attribute 1
+	glUseProgram(App->program->ID);    	
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glEnableVertexAttribArray(0); // attribute 1
+	glVertexAttribPointer(
+		0,
+		3,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)0 // buffer offset
+	);
+	glEnableVertexAttribArray(1); // attribute 1
 	glVertexAttribPointer(
 		1,
 		2,
 		GL_FLOAT,
 		GL_FALSE,
 		0,
-		(void*)(3*3*sizeof(float)) // buffer offset
+		(void*)(3 * 3 * sizeof(float)) // buffer offset
 	);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, App->texture->Texture);
 	glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
-	glUseProgram(App->program->ID);    
-	glDrawArrays(GL_TRIANGLES, 0, 3); // start at 0 and 3 tris            
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "model"), 1, GL_TRUE, &App->camera->model[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "view"), 1, GL_TRUE, &App->camera->view[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "proj"), 1, GL_TRUE, &App->camera->proj[0][0]);
+	glDrawArrays(GL_TRIANGLES, 0, 3); // start at 0 and 3 tris    
+	//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glDisableVertexAttribArray(0);   
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	return UPDATE_CONTINUE;
