@@ -29,6 +29,8 @@ bool ModuleTriangle::Init()
 		v1, v2, v3
 	};
 
+	
+
 	float buffer_data_texture[] = { 
 		-1.0f, -1.0f, 0.0f,  // ← v0 pos
 		1.0f, -1.0f, 0.0f,  // ← v1 pos
@@ -80,6 +82,7 @@ update_status ModuleTriangle::Update() {
 	glDrawArrays(GL_TRIANGLES, 0, 3); // start at 0 and 3 tris    
 	//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glDisableVertexAttribArray(0);   
+	glDisableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	return UPDATE_CONTINUE;
 }

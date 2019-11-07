@@ -21,6 +21,10 @@ public:
 	float4x4 LookAt(float3 eye, float3 target, float3 up);
 	void SetFOV(float fov);
 
+	void AdjustFOV();
+
+	void Move(float3 movement);
+
 public:
 	bool flag_ground = false;
 	bool flag_axis = false;

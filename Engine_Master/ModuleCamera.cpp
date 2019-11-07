@@ -28,12 +28,13 @@ bool ModuleCamera::Init()
 
 	proj = frustum.ProjectionMatrix();
 	model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(math::pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
-	view = LookAt(math::float3(0.0f, 1.f, 4.0f), math::float3(0.0f, 0.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
+	view = LookAt(math::float3(1.0f, 1.0f, 4.0f), math::float3(0.0f, 0.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
 	return true;
 }
 
 update_status ModuleCamera::PreUpdate()
 {
+
 	return UPDATE_CONTINUE;
 }
 // Called every draw update
@@ -68,8 +69,8 @@ void ModuleCamera::ShowGrid()
 
 void ModuleCamera::ShowAxis()
 {
-	glLineWidth(2.0f); glBegin(GL_LINES);
-
+	glLineWidth(2.0f); 
+	glBegin(GL_LINES);
 	// red X 
 	glColor4f(1.0f, 0.0f, 0.0f, 1.0f); 
 	glVertex3f(0.0f, 0.0f, 0.0f); 
@@ -137,5 +138,15 @@ void ModuleCamera::SetFOV(float fov)
 	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) *aspect);
 
 	proj = frustum.ProjectionMatrix();
+}
+
+void ModuleCamera::AdjustFOV() {
+	aspect = (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT;
+	proj = frustum.ProjectionMatrix();
+}
+
+void ModuleCamera::Move(float3 movement)
+{
+
 }
 

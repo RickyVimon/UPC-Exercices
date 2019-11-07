@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleWindow.h"
+#include "ModuleCamera.h"
 
 ModuleWindow::ModuleWindow()
 {
@@ -34,7 +35,13 @@ bool ModuleWindow::Init()
 			flags |= SDL_WINDOW_FULLSCREEN;
 		}
 
+		if (RESIZABLE) {
+			flags |= SDL_WINDOW_RESIZABLE;
+		}
+
 		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+		
+
 
 		if(window == NULL)
 		{
@@ -67,4 +74,5 @@ bool ModuleWindow::CleanUp()
 	SDL_Quit();
 	return true;
 }
+
 
