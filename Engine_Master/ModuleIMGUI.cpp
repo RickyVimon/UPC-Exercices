@@ -121,7 +121,7 @@ update_status ModuleIMGUI::Update()
 
 			}
 			float fov = App->camera->frustum.verticalFov;
-			if (ImGui::SliderFloat("Vertical FOV", &fov , 0.01, math::pi, "%.3f", 1.0f))
+			if (ImGui::SliderFloat("Vertical FOV", &fov , 0.01f, math::pi, "%.3f", 1.0f))
 			{
 				App->camera->SetFOV(fov);
 			}

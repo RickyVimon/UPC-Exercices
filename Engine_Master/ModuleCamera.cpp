@@ -103,7 +103,8 @@ void ModuleCamera::ShowAxis()
 	glVertex3f(-0.05f, -0.1f, 1.05f); 
 	glVertex3f(-0.05f, -0.1f, 1.05f); 
 	glVertex3f(0.05f, -0.1f, 1.05f);
-	glEnd(); glLineWidth(1.0f);
+	glEnd(); 
+	glLineWidth(1.0f);
 }
 
 

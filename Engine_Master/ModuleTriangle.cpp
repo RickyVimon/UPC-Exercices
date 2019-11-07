@@ -1,8 +1,9 @@
-#include "ModuleTriangle.h"
+﻿#include "ModuleTriangle.h"
 #include "Libraries/MathGeoLib/include/Geometry/Frustum.h"
 #include "Libraries/MathGeoLib/include/Math/MathAll.h"
 #include "Application.h"
 #include "ModuleProgram.h"
+#include "ModuleTexture.h"
 
 
 ModuleTriangle::ModuleTriangle()
@@ -22,14 +23,26 @@ bool ModuleTriangle::Init()
 	float3 v3 = { 0.0f, 1.0f, 0.0f };
 
 
+
 	//create the figure
 	float3 buffer_data[] = {
 		v1, v2, v3
 	};
+
+	float buffer_data_texture[] = { 
+		-1.0f, -1.0f, 0.0f,  // ← v0 pos
+		1.0f, -1.0f, 0.0f,  // ← v1 pos
+		0.0f,  1.0f, 0.0f,  // ← v2 pos
+
+		0.0f, 0.0f,         // ← v0 texcoord   
+		1.0f, 0.0f,         // ← v1 texcoord
+		0.5f, 1.0f          // ← v2 texcoord
+	};
+
 	
 	glGenBuffers(1, &vbo); 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo); 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(buffer_data), buffer_data, GL_STATIC_DRAW); 
+	glBufferData(GL_ARRAY_BUFFER, sizeof(buffer_data_texture), buffer_data_texture, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	return true;
@@ -38,18 +51,20 @@ bool ModuleTriangle::Init()
 
 
 update_status ModuleTriangle::Update() {
-	glEnableVertexAttribArray(0); // attribute 0 
+	glEnableVertexAttribArray(1); // attribute 1
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glVertexAttribPointer(
-		0,                  // attribute 0
-		3,                  // number of componentes (3 floats) 
-		GL_FLOAT,           // data type 
-		GL_FALSE,           // should be normalized? 
-		0,                  // stride 
-		(void*)0            // array buffer offset 
+		1,
+		2,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)(3*3*sizeof(float)) // buffer offset
 	);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, App->texture->Texture);
+	glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
 	glUseProgram(App->program->ID);    
-
 	glDrawArrays(GL_TRIANGLES, 0, 3); // start at 0 and 3 tris            
 	glDisableVertexAttribArray(0);   
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
