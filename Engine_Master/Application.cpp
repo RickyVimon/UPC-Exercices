@@ -8,6 +8,7 @@
 #include "ModuleProgram.h"
 #include "ModuleCamera.h"
 #include "ModuleTexture.h"
+#include "msTimer.h"
 using namespace std;
 
 Application::Application()
@@ -33,10 +34,14 @@ Application::~Application()
 
 bool Application::Init()
 {
+	msTimer timer;
+	timer.Start();
 	bool ret = true;
 
 	for(list<Module*>::iterator it = modules.begin(); it != modules.end() && ret; ++it)
 		ret = (*it)->Init();
+
+	timer.Read();
 
 	return ret;
 }

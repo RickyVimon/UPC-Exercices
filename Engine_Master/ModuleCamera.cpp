@@ -3,6 +3,7 @@
 #include "glew-2.1.0-win32/glew-2.1.0/include/GL/glew.h"
 #include "Application.h"
 #include "ModuleProgram.h"
+#include "msTimer.h"
 
 
 
@@ -17,6 +18,8 @@ ModuleCamera::~ModuleCamera()
 
 bool ModuleCamera::Init()
 {
+	msTimer timer;
+	timer.Start();
 	frustum.type = FrustumType::PerspectiveFrustum;
 	frustum.pos = float3::zero;
 	frustum.front = -float3::unitZ;
@@ -29,6 +32,7 @@ bool ModuleCamera::Init()
 	proj = frustum.ProjectionMatrix();
 	model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(math::pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
 	view = LookAt(math::float3(1.0f, 1.0f, 4.0f), math::float3(0.0f, 0.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
+	timer.Read();
 	return true;
 }
 
@@ -146,7 +150,11 @@ void ModuleCamera::AdjustFOV() {
 }
 
 void ModuleCamera::Move(float3 movement)
-{
-
+{													
+	/*
+	frustrum.pos
+	frustrum.up
+	frustrum.front
+	*/
 }
 

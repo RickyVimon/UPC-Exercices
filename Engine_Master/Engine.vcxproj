@@ -100,6 +100,8 @@
     <ClInclude Include="ModuleTexture.h" />
     <ClInclude Include="ModuleTriangle.h" />
     <ClInclude Include="ModuleWindow.h" />
+    <ClInclude Include="msTimer.h" />
+    <ClInclude Include="usTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -151,6 +153,8 @@
     <ClCompile Include="ModuleTexture.cpp" />
     <ClCompile Include="ModuleTriangle.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
+    <ClCompile Include="msTimer.cpp" />
+    <ClCompile Include="usTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Libraries\IMGUI\.editorconfig" />
