@@ -14,6 +14,7 @@ class ModuleIMGUI;
 class ModuleTexture;
 class ModuleProgram;
 class ModuleCamera;
+class ModuleModelLoader;
 
 class Application
 {
@@ -35,6 +36,7 @@ public:
 	ModuleTexture* texture = nullptr;
 	ModuleCamera* camera = nullptr;
 	ModuleIMGUI* imgui = nullptr;
+	ModuleModelLoader* moduleloader = nullptr;
 
 private:
 

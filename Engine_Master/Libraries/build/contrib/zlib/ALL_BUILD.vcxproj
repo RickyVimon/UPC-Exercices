@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{03E5BCB1-0557-3670-B7B5-6728705934F8}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\.;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\include;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\.;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\include;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\.;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\include;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\.;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\include;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1/contrib/zlib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\bin\cmake.exe -SC:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1 -BC:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build --check-stamp-file C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/contrib/zlib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\zconf.h.cmakein;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\zlib.pc.cmakein;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\CMakeFiles\CheckTypeSize\OFF64_T.c;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.c;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.c.in;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.c.in;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1/contrib/zlib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\bin\cmake.exe -SC:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1 -BC:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build --check-stamp-file C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/contrib/zlib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\zconf.h.cmakein;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\zlib.pc.cmakein;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\CMakeFiles\CheckTypeSize\OFF64_T.c;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.c;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.c.in;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.c.in;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1/contrib/zlib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\bin\cmake.exe -SC:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1 -BC:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build --check-stamp-file C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/contrib/zlib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\zconf.h.cmakein;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\zlib.pc.cmakein;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\CMakeFiles\CheckTypeSize\OFF64_T.c;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.c;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.c.in;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.c.in;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1/contrib/zlib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\bin\cmake.exe -SC:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1 -BC:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build --check-stamp-file C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/contrib/zlib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\zconf.h.cmakein;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\assimp-3.3.1\contrib\zlib\zlib.pc.cmakein;C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\CMakeFiles\CheckTypeSize\OFF64_T.c;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.c;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.c.in;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.c.in;C:\Users\ricardvm1\Downloads\cmake-3.15.5-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\ZERO_CHECK.vcxproj">
+      <Project>{9143FFF5-8A58-38E6-8810-1310395B988A}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ricardvm1\Documents\GitHub\UPC-Exercices\Engine_Master\Libraries\build\contrib\zlib\zlibstatic.vcxproj">
+      <Project>{20065002-723B-33DF-96CE-62FB7007F2A0}</Project>
+      <Name>zlibstatic</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

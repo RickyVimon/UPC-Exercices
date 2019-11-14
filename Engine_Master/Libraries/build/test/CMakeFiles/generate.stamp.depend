@@ -1,0 +1,12 @@
+# CMake generation dependency list for this directory.
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1/cmake-modules/AddGTest.cmake
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/assimp-3.3.1/test/CMakeLists.txt
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/CheckCSourceCompiles.cmake
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/CheckIncludeFile.c.in
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/CheckIncludeFile.cmake
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/CheckLibraryExists.cmake
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/ExternalProject.cmake
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/FindGit.cmake
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/FindPackageMessage.cmake
+C:/Users/ricardvm1/Downloads/cmake-3.15.5-win64-x64/share/cmake-3.15/Modules/FindThreads.cmake

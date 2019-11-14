@@ -71,7 +71,7 @@ update_status ModuleIMGUI::Update()
 			char title[50];
 			sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
 			ImGui::PlotHistogram("##framerate", &fps_log[0], fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
-			fps_log.pop_back();
+			fps_log.erase(fps_log.begin());
 		}
 		//fps_log.pop_back();
 		ImGui::End();

@@ -1,0 +1,14 @@
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/CMakeFiles/uninstall.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/CMakeFiles/UpdateAssimpLibsDebugSymbolsAndDLLs.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/CMakeFiles/INSTALL.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/contrib/zlib/CMakeFiles/zlibstatic.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/contrib/zlib/CMakeFiles/INSTALL.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/contrib/zlib/CMakeFiles/ALL_BUILD.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/code/CMakeFiles/assimp.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/code/CMakeFiles/INSTALL.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/tools/assimp_cmd/CMakeFiles/assimp_cmd.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/tools/assimp_cmd/CMakeFiles/INSTALL.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/test/CMakeFiles/INSTALL.dir
+C:/Users/ricardvm1/Documents/GitHub/UPC-Exercices/Engine_Master/Libraries/build/test/headercheck/CMakeFiles/INSTALL.dir

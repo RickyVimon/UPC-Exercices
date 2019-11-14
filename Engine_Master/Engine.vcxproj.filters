@@ -128,6 +128,7 @@
     <ClCompile Include="ModuleTexture.cpp" />
     <ClCompile Include="msTimer.cpp" />
     <ClCompile Include="usTimer.cpp" />
+    <ClCompile Include="ModuleModelLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="ModuleTexture.h" />
     <ClInclude Include="msTimer.h" />
     <ClInclude Include="usTimer.h" />
+    <ClInclude Include="ModuleModelLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

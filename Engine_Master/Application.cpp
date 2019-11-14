@@ -9,6 +9,7 @@
 #include "ModuleCamera.h"
 #include "ModuleTexture.h"
 #include "msTimer.h"
+#include "ModuleModelLoader.h"
 using namespace std;
 
 Application::Application()
@@ -22,6 +23,7 @@ Application::Application()
 	modules.push_back(texture = new ModuleTexture());
 	modules.push_back(camera = new ModuleCamera());
 	modules.push_back(imgui = new ModuleIMGUI());
+	modules.push_back(moduleloader = new ModuleModelLoader());
 }
 
 Application::~Application()
