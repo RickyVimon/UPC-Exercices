@@ -32,9 +32,11 @@ public:
 
 	void Rotate(Axis axis, float movement);
 
+	bool Boost();
+
 public:
 	float mov_speed = 0.1f;
-	float rot_speed = 0.01f;
+	float rot_speed = 0.015f;
 	bool flag_ground = false;
 	bool flag_axis = false;
 	Frustum frustum;

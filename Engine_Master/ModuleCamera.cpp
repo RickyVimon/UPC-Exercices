@@ -53,27 +53,45 @@ update_status ModuleCamera::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
-		Move(Z, 1.0f);		
+		if (Boost())
+			Move(Z, 2.0f);
+		else
+			Move(Z, 1.0f);		
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
-		Move(Z, -1.0f);		
+		if (Boost())
+			Move(Z, -2.0f);
+		else
+			Move(Z, -1.0f);		
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT)
 	{
-		Move(Y, 1.0f);
+		if (Boost())
+			Move(Y, 2.0f);
+		else
+			Move(Y, 1.0f);
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT)
 	{
-		Move(Y, -1.0f);
+		if (Boost())
+			Move(Y, -2.0f);
+		else
+			Move(Y, -1.0f);
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		Move(X, -1.0f);
+		if (Boost())
+			Move(X, -2.0f);
+		else
+			Move(X, -1.0f);
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		Move(X, 1.0f);
+		if (Boost())
+			Move(X, 2.0f);
+		else
+			Move(X, 1.0f);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -210,7 +228,8 @@ void ModuleCamera::Move(Axis axis, float movement)
 		frustum.pos += frustum.up * (movement * mov_speed);
 		break;
 	case Z:
-		frustum.pos += frustum.front * (movement * mov_speed);
+		//frustum.Translate({ 0.0f, 0.0f, movement * mov_speed });
+		frustum.pos -= frustum.WorldRight().Cross(float3(0,1,0)) * (movement * mov_speed);
 		break;
 	}
 	
@@ -225,11 +244,20 @@ void ModuleCamera::Rotate(Axis axis, float movement)
 		break;
 	case Y:
 		frustum.front = math::float3x3::RotateY(movement * rot_speed).Transform(frustum.front).Normalized();
+		frustum.up = math::float3x3::RotateY(movement * rot_speed).Transform(frustum.front).Normalized();
 		break;
 	case Z:
 		frustum.front = math::float3x3::RotateZ(movement * rot_speed).Transform(frustum.front).Normalized();
 		break;
 	}
 
+}
+
+bool ModuleCamera::Boost() 
+{
+	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+		return true;
+	else
+		return false;
 }
 
