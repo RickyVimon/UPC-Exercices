@@ -32,8 +32,7 @@ bool ModuleCamera::Init()
 
 	proj = frustum.ProjectionMatrix();
 	model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(math::pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
-	view = LookAt(math::float3(1.0f, 1.0f, 4.0f), math::float3(0.0f, 0.0f, 0.0f), math::float3(0.0f, 1.0f, 0.0f));
-	timer.Read();
+	view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
 	return true;
 }
 
@@ -54,12 +53,55 @@ update_status ModuleCamera::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
-		Move(Z, 1.0f);		
+		Move(Z, -1.0f);		
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
-		Move(Z, -1.0f);		
+		Move(Z, 1.0f);		
 	}
+	else if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT)
+	{
+		Move(Y, -1.0f);
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT)
+	{
+		Move(Y, 1.0f);
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	{
+		Move(X, -1.0f);
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	{
+		Move(X, 1.0f);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	{
+		Rotate(X, -1.0f);
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
+		Rotate(X, 1.0f);
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+	{
+		Rotate(Y, -1.0f);
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	{
+		Rotate(Y, 1.0f);
+	}
+	/*else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	{
+		Rotate(X, -1.0f);
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	{
+		Rotate(X, 1.0f);
+	}
+	*/
+
 	view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
 	return UPDATE_CONTINUE;
 }
@@ -163,7 +205,7 @@ void ModuleCamera::Move(Axis axis, float movement)
 	switch (axis) {
 	case X:
 		
-		frustum.Translate({ movement * mov_speed, 0.0f, 0.0f });// = frustum.pos + {movement * mov_speed, 0.0f, 0.0f};
+		frustum.Translate({ movement * mov_speed, 0.0f, 0.0f });
 		break;
 	case Y:
 		frustum.Translate({0.0f, movement * mov_speed, 0.0f});
@@ -174,5 +216,22 @@ void ModuleCamera::Move(Axis axis, float movement)
 		break;
 	}
 	
+}
+
+
+void ModuleCamera::Rotate(Axis axis, float movement)
+{
+	switch (axis) {
+	case X:
+		frustum.front = math::float3x3::RotateX(movement * rot_speed).Transform(frustum.front).Normalized();
+		break;
+	case Y:
+		frustum.front = math::float3x3::RotateY(movement * rot_speed).Transform(frustum.front).Normalized();
+		break;
+	case Z:
+		frustum.front = math::float3x3::RotateZ(movement * rot_speed).Transform(frustum.front).Normalized();
+		break;
+	}
+
 }
 
