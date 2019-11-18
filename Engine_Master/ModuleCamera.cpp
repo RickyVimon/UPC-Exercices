@@ -4,6 +4,7 @@
 #include "Application.h"
 #include "ModuleProgram.h"
 #include "msTimer.h"
+#include "ModuleInput.h"
 
 
 
@@ -51,7 +52,15 @@ update_status ModuleCamera::Update()
 		ShowAxis();
 	}
 
-
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+	{
+		Move(Z, 1.0f);		
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+	{
+		Move(Z, -1.0f);		
+	}
+	view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
 	return UPDATE_CONTINUE;
 }
 
@@ -149,12 +158,21 @@ void ModuleCamera::AdjustFOV() {
 	proj = frustum.ProjectionMatrix();
 }
 
-void ModuleCamera::Move(float3 movement)
-{													
-	/*
-	frustrum.pos
-	frustrum.up
-	frustrum.front
-	*/
+void ModuleCamera::Move(Axis axis, float movement)
+{				
+	switch (axis) {
+	case X:
+		
+		frustum.Translate({ movement * mov_speed, 0.0f, 0.0f });// = frustum.pos + {movement * mov_speed, 0.0f, 0.0f};
+		break;
+	case Y:
+		frustum.Translate({0.0f, movement * mov_speed, 0.0f});
+		break;
+	case Z:
+		//frustum.pos += frustum.front * (movement * mov_speed);	
+		frustum.Translate({0.0f, 0.0f, movement * mov_speed});
+		break;
+	}
+	
 }
 

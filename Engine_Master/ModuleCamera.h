@@ -5,6 +5,11 @@
 #include "Libraries/MathGeoLib/include/Math/float4x4.h"
 #include "Libraries/MathGeoLib/include/Math/float3.h"
 
+enum Axis {
+	X,
+	Y,
+	Z
+};
 
 class ModuleCamera :
 	public Module
@@ -23,9 +28,10 @@ public:
 
 	void AdjustFOV();
 
-	void Move(float3 movement);
+	void Move(Axis axis, float movement);
 
 public:
+	float mov_speed = 0.2f;
 	bool flag_ground = false;
 	bool flag_axis = false;
 	Frustum frustum;
