@@ -68,25 +68,6 @@ update_status ModuleRender::PreUpdate()
 // Called every draw update
 update_status ModuleRender::Update()
 {
-	//glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	//glEnableVertexAttribArray(0); // attribute 0
-	//glVertexAttribPointer(
-	//	0,
-	//	3,
-	//	GL_FLOAT,
-	//	GL_FALSE,
-	//	0,
-	//	(void*)0 // buffer offset
-	//);
-	glEnableVertexAttribArray(1); // attribute 1
-	glVertexAttribPointer(
-		1,
-		2,
-		GL_FLOAT,
-		GL_FALSE,
-		0,
-		(void*)(3 * 3 * sizeof(float)) // buffer offset
-	);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, App->texture->texture);
 	glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
