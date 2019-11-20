@@ -6,7 +6,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
-    <ClCompile Include="ModuleTriangle.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="ModuleIMGUI.cpp" />
     <ClCompile Include="ModuleProgram.cpp" />
@@ -137,7 +136,6 @@
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleRender.h" />
-    <ClInclude Include="ModuleTriangle.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="ModuleIMGUI.h" />
     <ClInclude Include="ModuleProgram.h" />

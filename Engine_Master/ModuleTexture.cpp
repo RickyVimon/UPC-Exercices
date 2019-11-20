@@ -11,10 +11,15 @@ ModuleTexture::~ModuleTexture()
 
 bool ModuleTexture::Init()
 {
+
 	ilInit();
 	iluInit();
 	ilutInit();
+	ilutRenderer(ILUT_OPENGL);
+	ilGenImages(1, &imageName);
+	ilBindImage(imageName);
 
+	return true; 
 	return true; 
 }
 
@@ -37,6 +42,10 @@ Texture ModuleTexture::LoadTexture(const char* path)
 	texture.height = ilGetInteger(IL_IMAGE_HEIGHT);
 	texture.data = ilGetData();
 	texture.path = path;
-	return texture;
 
+	return texture;
+}
+bool ModuleTexture::CleanUp() {
+	ilDeleteImages(1, &imageName);
+	return true;
 }

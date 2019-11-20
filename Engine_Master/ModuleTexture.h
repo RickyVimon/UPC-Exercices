@@ -16,12 +16,13 @@ public:
 	virtual ~ModuleTexture();
 	bool Init();
 	update_status Update();
-	ILuint ImageName;
+	ILuint imageName;
 	ILinfo imageInfo;
 	ILuint Width, Height;
 	GLuint texture;
 	ILubyte *Data;
 	Texture LoadTexture(const char* path);
+	bool CleanUp();
 };
 
 #endif

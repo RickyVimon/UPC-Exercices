@@ -78,18 +78,18 @@ update_status ModuleRender::Update()
 	//	0,
 	//	(void*)0 // buffer offset
 	//);
-	//glEnableVertexAttribArray(1); // attribute 1
-	//glVertexAttribPointer(
-	//	1,
-	//	2,
-	//	GL_FLOAT,
-	//	GL_FALSE,
-	//	0,
-	//	(void*)(3 * 3 * sizeof(float)) // buffer offset
-	//);
-	//glActiveTexture(GL_TEXTURE0);
-	//glBindTexture(GL_TEXTURE_2D, App->texture->texture);
-	//glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
+	glEnableVertexAttribArray(1); // attribute 1
+	glVertexAttribPointer(
+		1,
+		2,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)(3 * 3 * sizeof(float)) // buffer offset
+	);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, App->texture->texture);
+	glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
 	SDL_GL_MakeCurrent(App->window->window, context);
 	App->moduleloader->Draw(App->program->ID);
 	return UPDATE_CONTINUE;
