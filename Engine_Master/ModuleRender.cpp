@@ -4,6 +4,10 @@
 #include "ModuleWindow.h"
 #include "SDL.h"
 #include "GL/glew.h"
+#include "ModuleModelLoader.h"
+#include "ModuleProgram.h"
+#include "ModuleCamera.h"
+#include "ModuleTexture.h"
 
 ModuleRender::ModuleRender()
 {
@@ -24,8 +28,9 @@ bool ModuleRender::Init()
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8); 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4); 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
 
-	SDL_GLContext context = SDL_GL_CreateContext(App->window->window);
+	context = SDL_GL_CreateContext(App->window->window);
 
 	GLenum err = glewInit(); // … check for errors 
 	LOG("Using Glew %s", glewGetString(GLEW_VERSION)); // Should be 2.0
@@ -41,23 +46,52 @@ bool ModuleRender::Init()
 	glEnable(GL_DEPTH_TEST); 
 	glFrontFace(GL_CCW); 
 	glEnable(GL_CULL_FACE);
-	glEnable(GL_TEXTURE_2D); 
+	glEnable(GL_TEXTURE_2D);
+	App->moduleloader->LoadModel("Models/BakerHouse.fbx");
 	return true;
 }
 
 update_status ModuleRender::PreUpdate()
 {
+	glUseProgram(App->program->ID);
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "model"), 1, GL_TRUE, &App->camera->model[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "view"), 1, GL_TRUE, &App->camera->view[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(App->program->ID, "proj"), 1, GL_TRUE, &App->camera->proj[0][0]);
 	int w, h;
 	SDL_GetWindowSize(App->window->window, &w, &h);
 	glViewport(0, 0, w, h);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	return UPDATE_CONTINUE;
 }
 
 // Called every draw update
 update_status ModuleRender::Update()
 {
-
+	//glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	//glEnableVertexAttribArray(0); // attribute 0
+	//glVertexAttribPointer(
+	//	0,
+	//	3,
+	//	GL_FLOAT,
+	//	GL_FALSE,
+	//	0,
+	//	(void*)0 // buffer offset
+	//);
+	//glEnableVertexAttribArray(1); // attribute 1
+	//glVertexAttribPointer(
+	//	1,
+	//	2,
+	//	GL_FLOAT,
+	//	GL_FALSE,
+	//	0,
+	//	(void*)(3 * 3 * sizeof(float)) // buffer offset
+	//);
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, App->texture->texture);
+	//glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
+	SDL_GL_MakeCurrent(App->window->window, context);
+	App->moduleloader->Draw(App->program->ID);
 	return UPDATE_CONTINUE;
 }
 

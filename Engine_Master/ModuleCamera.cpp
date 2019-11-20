@@ -119,7 +119,6 @@ update_status ModuleCamera::Update()
 		Rotate(X, 1.0f);
 	}
 	*/
-
 	view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
 	return UPDATE_CONTINUE;
 }
@@ -228,7 +227,6 @@ void ModuleCamera::Move(Axis axis, float movement)
 		frustum.pos += frustum.up * (movement * mov_speed);
 		break;
 	case Z:
-		//frustum.Translate({ 0.0f, 0.0f, movement * mov_speed });
 		frustum.pos -= frustum.WorldRight().Cross(float3(0,1,0)) * (movement * mov_speed);
 		break;
 	}
@@ -244,7 +242,6 @@ void ModuleCamera::Rotate(Axis axis, float movement)
 		break;
 	case Y:
 		frustum.front = math::float3x3::RotateY(movement * rot_speed).Transform(frustum.front).Normalized();
-		frustum.up = math::float3x3::RotateY(movement * rot_speed).Transform(frustum.front).Normalized();
 		break;
 	case Z:
 		frustum.front = math::float3x3::RotateZ(movement * rot_speed).Transform(frustum.front).Normalized();

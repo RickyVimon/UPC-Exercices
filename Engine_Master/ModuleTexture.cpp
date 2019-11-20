@@ -14,22 +14,29 @@ bool ModuleTexture::Init()
 	ilInit();
 	iluInit();
 	ilutInit();
-	ilGenImages(1, &Lena);
-	ilBindImage(Lena);
-	if (!ilLoadImage("Lenna.png"))
-		LOG("Error loading image");
-	ILenum Error;
-	Error = ilGetError();
-	Width = ilGetInteger(IL_IMAGE_WIDTH);
-	Height = ilGetInteger(IL_IMAGE_HEIGHT);
-	ilutRenderer(ILUT_OPENGL);
-	Data = ilGetData();
-	Texture = ilutGLBindTexImage();
-	ilDeleteImages(1, &Lena);
+
 	return true; 
 }
 
 update_status ModuleTexture::Update()
 {
 	return UPDATE_CONTINUE;
+}
+
+Texture ModuleTexture::LoadTexture(const char* path) 
+{
+	Texture texture;
+	ilLoadImage(path);
+	iluGetImageInfo(&imageInfo);
+	if (imageInfo.Origin == IL_ORIGIN_UPPER_LEFT)
+	{
+		iluFlipImage();
+	}
+	texture.id = ilutGLBindTexImage();
+	texture.width = ilGetInteger(IL_IMAGE_WIDTH);
+	texture.height = ilGetInteger(IL_IMAGE_HEIGHT);
+	texture.data = ilGetData();
+	texture.path = path;
+	return texture;
+
 }

@@ -1,9 +1,12 @@
-#pragma once
+#ifndef _MODULETEXTURE_H_
+#define _MODULETEXTURE_H_
+
 #include "Module.h"
 #include "GL/glew.h";
 #include "IL/il.h"
 #include "IL/ilut.h"
 #include "IL/ilu.h"
+#include "Mesh.h"
 
 class ModuleTexture :
 	public Module
@@ -13,11 +16,13 @@ public:
 	virtual ~ModuleTexture();
 	bool Init();
 	update_status Update();
-
-public:
-	ILuint Lena;
+	ILuint ImageName;
+	ILinfo imageInfo;
 	ILuint Width, Height;
-	GLuint Texture;
+	GLuint texture;
 	ILubyte *Data;
+	Texture LoadTexture(const char* path);
 };
+
+#endif
 
