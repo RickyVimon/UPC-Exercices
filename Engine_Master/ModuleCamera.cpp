@@ -117,16 +117,6 @@ update_status ModuleCamera::Update()
 	{
 		Rotate(Y, 1.0f);
 	}
-	/*else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
-		Rotate(X, -1.0f);
-	}
-	else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		Rotate(X, 1.0f);
-	}
-	*/
-	//view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
 
 	proj = frustum.ProjectionMatrix();
 	view = frustum.ViewMatrix();
@@ -240,8 +230,7 @@ void ModuleCamera::Move(Axis axis, float movement)
 	case Z:
 		frustum.pos -= frustum.WorldRight().Cross(float3(0,1,0)) * (movement * mov_speed);
 		break;
-	}
-	
+	}	
 }
 
 void ModuleCamera::ZoomIn()
@@ -260,17 +249,15 @@ void ModuleCamera::Rotate(Axis axis, float movement)
 {
 	switch (axis) {
 	case X:
-		//frustum.front = math::float3x3::RotateX(movement * rot_speed).Transform(frustum.front).Normalized();
+
 		break;
 	case Y:
 		rotation_matrix = float3x3::RotateY(movement * rot_speed);
 		frustum.up = rotation_matrix * frustum.up;
 		frustum.front = rotation_matrix * frustum.front;
-		//frustum.front = math::float3x3::RotateY(movement * rot_speed).Transform(frustum.front).Normalized();
+
 		break;
 	case Z:
-		//frustum.front = math::float3x3::RotateZ(movement * rot_speed).Transform(frustum.front).Normalized();
-		//////////////
 		const float current_angle = asinf(frustum.front.y / frustum.front.Length());
 		if (abs(current_angle + movement * rot_speed) >= math::pi / 2) {
 			return;
