@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
+#include "ModuleWindow.h"
 
 #define MAX_KEYS 300
 
@@ -34,7 +35,6 @@ bool ModuleInput::Init()
 
 update_status ModuleInput::PreUpdate()
 {
-	static SDL_Event event;
 	memset(windowEvents, false, WE_COUNT * sizeof(bool));
 
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
@@ -55,6 +55,28 @@ update_status ModuleInput::PreUpdate()
 			else
 				keyboard[i] = KEY_IDLE;
 		}
+	}
+
+	SDL_PumpEvents();
+	static SDL_Event event;
+
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			windowEvents[WE_QUIT] = true;
+			return UPDATE_STOP;
+			break;
+
+		case SDL_WINDOWEVENT:
+			if (event.window.event == SDL_WINDOWEVENT_RESIZED || event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+				App->window->WindowResized(event.window.data1, event.window.data2);
+			break;
+		default:
+			break;
+		}
+		
 	}
 	return UPDATE_CONTINUE;
 }

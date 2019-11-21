@@ -26,8 +26,8 @@ bool ModuleWindow::Init()
 	else
 	{
 		//Create window
-		int width = SCREEN_WIDTH;
-		int height = SCREEN_HEIGHT;
+		width = SCREEN_WIDTH;
+		height = SCREEN_HEIGHT;
 		Uint32 flags = SDL_WINDOW_SHOWN |  SDL_WINDOW_OPENGL;
 
 		if(FULLSCREEN == true)
@@ -75,4 +75,9 @@ bool ModuleWindow::CleanUp()
 	return true;
 }
 
-
+void ModuleWindow::WindowResized(const unsigned width, const unsigned height)
+{
+	this->width = width;
+	this->height = height;
+	App->camera->SetAspect();
+}

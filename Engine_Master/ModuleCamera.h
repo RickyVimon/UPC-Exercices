@@ -34,6 +34,8 @@ public:
 
 	bool Boost();
 
+	void SetAspect();
+
 public:
 	float mov_speed = 0.1f;
 	float rot_speed = 0.015f;
@@ -41,6 +43,7 @@ public:
 	bool flag_axis = true;
 	Frustum frustum;
 	float4x4 proj, view, model;
-	float aspect = (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT;
+	float aspect;
+
 };
 

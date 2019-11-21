@@ -5,6 +5,9 @@
 #include "ModuleProgram.h"
 #include "msTimer.h"
 #include "ModuleInput.h"
+#include "ModuleWindow.h"
+#include "SDL.h"
+
 
 
 
@@ -19,6 +22,10 @@ ModuleCamera::~ModuleCamera()
 
 bool ModuleCamera::Init()
 {
+	int windowWidth, windowHeight;
+	SDL_GetWindowSize(App->window->window, &windowWidth, &windowHeight);
+	aspect = (float)windowWidth / windowHeight;
+
 	msTimer timer;
 	timer.Start();
 	frustum.type = FrustumType::PerspectiveFrustum;
@@ -256,5 +263,11 @@ bool ModuleCamera::Boost()
 		return true;
 	else
 		return false;
+}
+
+void ModuleCamera::SetAspect() {
+	aspect = ((float)App->window->width / App->window->height);
+	frustum.horizontalFov = 2.0f * atanf(tanf(frustum.verticalFov * 0.5f) *aspect);
+	proj = frustum.ProjectionMatrix();
 }
 
