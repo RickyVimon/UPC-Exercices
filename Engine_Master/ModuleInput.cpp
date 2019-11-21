@@ -90,11 +90,11 @@ update_status ModuleInput::PreUpdate()
 		case SDL_MOUSEMOTION:
 			if (event.motion.state & SDL_BUTTON_RMASK) {
 				if (math::Abs(event.motion.xrel) > 1.5) {
-					App->camera->Rotate(Y, event.motion.xrel*0.03);
+					App->camera->Rotate(Y, event.motion.xrel * 0.03); //0.03 is a reductor factor to adjust the speed of the mouse to the same functionallity with the arrow keys
 				}
 
 				if (math::Abs(event.motion.yrel) > 1.5) {
-					//App->camera->RotatePitch(event.motion.yrel);
+					App->camera->Rotate(Z, event.motion.yrel * 0.03);
 				}
 
 			}
