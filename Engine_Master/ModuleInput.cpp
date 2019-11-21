@@ -67,12 +67,6 @@ update_status ModuleInput::PreUpdate()
 	{
 		switch (event.type)
 		{
-
-		case SDL_DROPFILE:
-			App->moduleloader->LoadModel(event.drop.file);
-			SDL_free(event.drop.file);
-			break;
-
 		case SDL_QUIT:
 			windowEvents[WE_QUIT] = true;
 			return UPDATE_STOP;
@@ -104,6 +98,11 @@ update_status ModuleInput::PreUpdate()
 					App->camera->Rotate(Z, event.motion.yrel * 0.03);
 				}
 			}
+			break;
+
+		case SDL_DROPFILE:
+			App->moduleloader->LoadModel(event.drop.file);
+			SDL_free(event.drop.file);
 			break;
 		}
 

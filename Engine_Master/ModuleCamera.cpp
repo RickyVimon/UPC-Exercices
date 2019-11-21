@@ -118,6 +118,13 @@ update_status ModuleCamera::Update()
 		Rotate(Y, 1.0f);
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT)
+	{
+		frustum.pos = initial_position;
+	
+		//frustum.CenterPoint = initial_position;
+	}
+
 	proj = frustum.ProjectionMatrix();
 	view = frustum.ViewMatrix();
 

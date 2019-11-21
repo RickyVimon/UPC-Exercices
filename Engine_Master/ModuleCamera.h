@@ -44,5 +44,6 @@ public:
 	float4x4 proj, view, model;
 	float3x3 rotation_matrix;
 	float aspect;
+	float3 initial_position = { 5, 5, 0 };
 };
 
