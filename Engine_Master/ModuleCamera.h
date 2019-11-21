@@ -21,23 +21,17 @@ public:
 	bool Init();
 	update_status PreUpdate();
 	update_status Update();
+
 	void ShowGrid();
 	void ShowAxis();
 	float4x4 LookAt(float3 eye, float3 target, float3 up);
 	void SetFOV(float fov);
-
 	void AdjustFOV();
-
 	void Move(Axis axis, float movement);
-
 	void ZoomIn();
-
 	void ZoomOut();
-
 	void Rotate(Axis axis, float movement);
-
 	bool Boost();
-
 	void SetAspect();
 
 public:

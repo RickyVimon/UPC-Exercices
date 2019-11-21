@@ -4,6 +4,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleWindow.h"
 #include "ModuleCamera.h"
+#include "ModuleModelLoader.h"
 #include "MathGeoLib/include/Math/MathAll.h"
 
 #define MAX_KEYS 300
@@ -61,11 +62,17 @@ update_status ModuleInput::PreUpdate()
 
 	SDL_PumpEvents();
 	static SDL_Event event;
-
+	//SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
 		{
+
+		case SDL_DROPFILE:
+			App->moduleloader->LoadModel(event.drop.file);
+			SDL_free(event.drop.file);
+			break;
+
 		case SDL_QUIT:
 			windowEvents[WE_QUIT] = true;
 			return UPDATE_STOP;
@@ -79,11 +86,11 @@ update_status ModuleInput::PreUpdate()
 		case SDL_MOUSEWHEEL:
 			if (event.wheel.y > 0)
 			{
-				App->camera->ZoomOut();
+				App->camera->ZoomIn();
 			}
 			else if (event.wheel.y < 0)
 			{
-				App->camera->ZoomIn();
+				App->camera->ZoomOut();
 			}
 			break;
 
@@ -96,13 +103,11 @@ update_status ModuleInput::PreUpdate()
 				if (math::Abs(event.motion.yrel) > 1.5) {
 					App->camera->Rotate(Z, event.motion.yrel * 0.03);
 				}
-
 			}
 			break;
-
 		}
 
-	}
+	}	
 	return UPDATE_CONTINUE;
 }
 
