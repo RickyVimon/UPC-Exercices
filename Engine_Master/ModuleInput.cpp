@@ -3,6 +3,7 @@
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 #include "ModuleWindow.h"
+#include "ModuleCamera.h"
 
 #define MAX_KEYS 300
 
@@ -73,10 +74,18 @@ update_status ModuleInput::PreUpdate()
 			if (event.window.event == SDL_WINDOWEVENT_RESIZED || event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 				App->window->WindowResized(event.window.data1, event.window.data2);
 			break;
-		default:
+
+		case SDL_MOUSEWHEEL:
+			if (event.wheel.y > 0)
+			{
+				App->camera->ZoomOut();
+			}
+			else if (event.wheel.y < 0)
+			{
+				App->camera->ZoomIn();
+			}
 			break;
 		}
-		
 	}
 	return UPDATE_CONTINUE;
 }

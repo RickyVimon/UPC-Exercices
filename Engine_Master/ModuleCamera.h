@@ -30,6 +30,10 @@ public:
 
 	void Move(Axis axis, float movement);
 
+	void ZoomIn();
+
+	void ZoomOut();
+
 	void Rotate(Axis axis, float movement);
 
 	bool Boost();
@@ -44,6 +48,7 @@ public:
 	Frustum frustum;
 	float4x4 proj, view, model;
 	float aspect;
+	float zoom_speed = 2;
 
 };
 

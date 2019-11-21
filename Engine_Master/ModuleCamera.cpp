@@ -240,6 +240,17 @@ void ModuleCamera::Move(Axis axis, float movement)
 	
 }
 
+void ModuleCamera::ZoomIn()
+{
+	frustum.pos += frustum.front * zoom_speed;
+}
+
+
+void ModuleCamera::ZoomOut()
+{
+	frustum.pos -= frustum.front * zoom_speed;
+}
+
 
 void ModuleCamera::Rotate(Axis axis, float movement)
 {
