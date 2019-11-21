@@ -259,6 +259,9 @@ void ModuleCamera::Rotate(Axis axis, float movement)
 		frustum.front = math::float3x3::RotateX(movement * rot_speed).Transform(frustum.front).Normalized();
 		break;
 	case Y:
+		rotation_matrix = float3x3::RotateY(movement * rot_speed);
+		frustum.up = rotation_matrix * frustum.up;
+		frustum.front = rotation_matrix * frustum.front;
 		frustum.front = math::float3x3::RotateY(movement * rot_speed).Transform(frustum.front).Normalized();
 		break;
 	case Z:

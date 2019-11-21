@@ -4,6 +4,7 @@
 #include "SDL/include/SDL.h"
 #include "ModuleWindow.h"
 #include "ModuleCamera.h"
+#include "MathGeoLib/include/Math/MathAll.h"
 
 #define MAX_KEYS 300
 
@@ -85,7 +86,22 @@ update_status ModuleInput::PreUpdate()
 				App->camera->ZoomIn();
 			}
 			break;
+
+		case SDL_MOUSEMOTION:
+			if (event.motion.state & SDL_BUTTON_RMASK) {
+				if (math::Abs(event.motion.xrel) > 1.5) {
+					App->camera->Rotate(Y, event.motion.xrel*0.03);
+				}
+
+				if (math::Abs(event.motion.yrel) > 1.5) {
+					//App->camera->RotatePitch(event.motion.yrel);
+				}
+
+			}
+			break;
+
 		}
+
 	}
 	return UPDATE_CONTINUE;
 }

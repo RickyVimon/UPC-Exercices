@@ -43,12 +43,12 @@ public:
 public:
 	float mov_speed = 0.1f;
 	float rot_speed = 0.015f;
+	float zoom_speed = 2;
 	bool flag_ground = true;
 	bool flag_axis = true;
 	Frustum frustum;
 	float4x4 proj, view, model;
+	float3x3 rotation_matrix;
 	float aspect;
-	float zoom_speed = 2;
-
 };
 
