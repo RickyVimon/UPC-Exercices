@@ -5,6 +5,7 @@
 #include "ModuleWindow.h"
 #include "ModuleCamera.h"
 #include "ModuleModelLoader.h"
+#include "ModuleIMGUI.h"
 #include "MathGeoLib/include/Math/MathAll.h"
 
 #define MAX_KEYS 300
@@ -98,9 +99,20 @@ update_status ModuleInput::PreUpdate()
 					App->camera->Rotate(Z, event.motion.yrel * 0.03);
 				}
 			}
+			else if (event.motion.state & SDL_BUTTON_LMASK) {
+				if (math::Abs(event.motion.xrel) > 1.5) {
+					App->camera->Orbit(X, event.motion.xrel * 0.03);
+				}
+
+				if (math::Abs(event.motion.yrel) > 1.5) {
+					App->camera->Orbit(Y, event.motion.yrel * 0.03);
+				}
+
+			}
 			break;
 
 		case SDL_DROPFILE:
+			//App->moduleloader->meshes.clear();
 			App->moduleloader->LoadModel(event.drop.file);
 			SDL_free(event.drop.file);
 			break;

@@ -29,7 +29,7 @@ bool ModuleCamera::Init()
 	msTimer timer;
 	timer.Start();
 	frustum.type = FrustumType::PerspectiveFrustum;
-	frustum.pos = float3::zero;
+	frustum.pos = initial_position;
 	frustum.front = -float3::unitZ;
 	frustum.up = float3::unitY;
 	frustum.nearPlaneDistance = 0.1f;
@@ -38,8 +38,9 @@ bool ModuleCamera::Init()
 	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) *aspect);
 
 	proj = frustum.ProjectionMatrix();
-	model = float4x4::FromTRS(float3(0.0f, 0.0f, -4.0f), float3x3::RotateY(math::pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
-	view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
+	model = float4x4::FromTRS(float3(0.0f, 0.0f, 0.0f), float3x3::RotateY(math::pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
+	FocusAt((float3::zero - frustum.pos).Normalized());
+	//view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
 	return true;
 }
 
@@ -120,9 +121,8 @@ update_status ModuleCamera::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT)
 	{
+		FocusAt((float3::zero - frustum.pos).Normalized());
 		frustum.pos = initial_position;
-	
-		//frustum.CenterPoint = initial_position;
 	}
 
 	proj = frustum.ProjectionMatrix();
@@ -278,6 +278,31 @@ void ModuleCamera::Rotate(Axis axis, float movement)
 
 }
 
+void ModuleCamera::Orbit(Axis axis, float angle)
+{
+	float3x3 rotation_matrix;
+	switch (axis)
+	{
+	case X:	
+		rotation_matrix = float3x3::RotateY(-angle * rot_speed);
+		break;
+
+	case Y:
+		const float current_angle = asinf(frustum.front.y / frustum.front.Length());
+		if (abs(current_angle + angle * rot_speed) >= math::pi / 2) {
+			return;
+		}
+		rotation_matrix = float3x3::identity;
+		rotation_matrix.SetRotatePart(frustum.WorldRight(), -angle * rot_speed);
+		break;
+	}
+
+	frustum.pos = rotation_matrix * frustum.pos;
+	FocusAt((float3::zero - frustum.pos).Normalized());
+	view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
+
+}
+
 bool ModuleCamera::Boost() 
 {
 	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
@@ -290,5 +315,12 @@ void ModuleCamera::SetAspect() {
 	aspect = ((float)App->window->width / App->window->height);
 	frustum.horizontalFov = 2.0f * atanf(tanf(frustum.verticalFov * 0.5f) *aspect);
 	proj = frustum.ProjectionMatrix();
+}
+
+void ModuleCamera::FocusAt(float3 target) 
+{
+	float3x3 rotation_matrix = float3x3::LookAt(frustum.front, target, frustum.up, float3::unitY);
+	frustum.front = rotation_matrix * frustum.front;
+	frustum.up = rotation_matrix * frustum.up;
 }
 

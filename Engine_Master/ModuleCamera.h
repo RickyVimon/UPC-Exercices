@@ -31,8 +31,11 @@ public:
 	void ZoomIn();
 	void ZoomOut();
 	void Rotate(Axis axis, float movement);
+	void Orbit(Axis axis, float angle);
 	bool Boost();
 	void SetAspect();
+
+	void FocusAt(const float3 target);
 
 public:
 	float mov_speed = 0.1f;
@@ -44,6 +47,6 @@ public:
 	float4x4 proj, view, model;
 	float3x3 rotation_matrix;
 	float aspect;
-	float3 initial_position = { 5, 5, 0 };
+	float3 initial_position = { -10, 5, -10 };
 };
 
