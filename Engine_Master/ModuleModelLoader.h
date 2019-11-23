@@ -7,6 +7,8 @@
 #include "assimp/scene.h"
 #include <vector>
 
+struct aiScene;
+
 class ModuleModelLoader : public Module
 {
 public:
@@ -21,6 +23,8 @@ public:
 	bool CleanUp();
 	void LoadModel(const char*);
 	void Draw(unsigned int program);
+	const aiScene* scene = nullptr;
+	void ChangeModel(const char * path);
 
 private:
 	void processNode(aiNode*, const aiScene*);

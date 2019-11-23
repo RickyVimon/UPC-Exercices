@@ -6,6 +6,7 @@
 #include "ModuleCamera.h"
 #include "ModuleModelLoader.h"
 #include "ModuleIMGUI.h"
+#include "ModuleTexture.h"
 #include "MathGeoLib/include/Math/MathAll.h"
 
 #define MAX_KEYS 300
@@ -112,8 +113,20 @@ update_status ModuleInput::PreUpdate()
 			break;
 
 		case SDL_DROPFILE:
+			std::string path = event.drop.file;
+			std::string extension = path.substr(path.size() - 3, path.size());
 			//App->moduleloader->meshes.clear();
-			App->moduleloader->LoadModel(event.drop.file);
+			if (extension == "fbx")
+			{
+				App->moduleloader->ChangeModel(event.drop.file);
+				App->camera->BackToZero();
+			}
+			else if (extension == "jpg" || extension == "png") 
+			{
+				App->texture->LoadTexture(path.c_str());
+			}
+			
+			//App->camera->frustum.pos = App->camera->initial_position;
 			SDL_free(event.drop.file);
 			break;
 		}

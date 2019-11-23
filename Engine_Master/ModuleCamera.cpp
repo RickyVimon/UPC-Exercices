@@ -121,8 +121,7 @@ update_status ModuleCamera::Update()
 
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT)
 	{
-		FocusAt((float3::zero - frustum.pos).Normalized());
-		frustum.pos = initial_position;
+		BackToZero();
 	}
 
 	proj = frustum.ProjectionMatrix();
@@ -322,5 +321,11 @@ void ModuleCamera::FocusAt(float3 target)
 	float3x3 rotation_matrix = float3x3::LookAt(frustum.front, target, frustum.up, float3::unitY);
 	frustum.front = rotation_matrix * frustum.front;
 	frustum.up = rotation_matrix * frustum.up;
+}
+
+void ModuleCamera::BackToZero()
+{
+	FocusAt((float3::zero - frustum.pos).Normalized());
+	frustum.pos = initial_position;
 }
 

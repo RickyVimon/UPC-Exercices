@@ -4,6 +4,7 @@
 #include "assimp/Importer.hpp"
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
+#include "assimp/cimport.h"
 
 
 ModuleModelLoader::ModuleModelLoader() {}
@@ -31,7 +32,7 @@ void ModuleModelLoader::Draw(unsigned int program)
 void ModuleModelLoader::LoadModel(const char* path) 
 {
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+	scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 		LOG("Error loading the file");
 		return;
@@ -162,4 +163,12 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 		}
 	}
 	return textures;
+}
+
+void ModuleModelLoader::ChangeModel(const char* path)
+{
+	texturesLoaded.clear();
+	meshes.clear();
+	directory.clear();
+	LoadModel(path);
 }

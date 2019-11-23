@@ -19,7 +19,7 @@ public:
 	ILuint imageName;
 	ILinfo imageInfo;
 	ILuint Width, Height;
-	GLuint texture;
+	Texture texture;
 	ILubyte *Data;
 	Texture LoadTexture(const char* path);
 	bool CleanUp();

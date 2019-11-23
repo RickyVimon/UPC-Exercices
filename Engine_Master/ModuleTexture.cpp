@@ -30,7 +30,7 @@ update_status ModuleTexture::Update()
 
 Texture ModuleTexture::LoadTexture(const char* path) 
 {
-	Texture texture;
+	//Texture texture;
 	ilLoadImage(path);
 	iluGetImageInfo(&imageInfo);
 	if (imageInfo.Origin == IL_ORIGIN_UPPER_LEFT)
@@ -45,6 +45,7 @@ Texture ModuleTexture::LoadTexture(const char* path)
 
 	return texture;
 }
+
 bool ModuleTexture::CleanUp() {
 	ilDeleteImages(1, &imageName);
 	return true;

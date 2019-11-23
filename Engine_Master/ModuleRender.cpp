@@ -69,7 +69,7 @@ update_status ModuleRender::PreUpdate()
 update_status ModuleRender::Update()
 {
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, App->texture->texture);
+	glBindTexture(GL_TEXTURE_2D, App->texture->texture.id);
 	glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
 	SDL_GL_MakeCurrent(App->window->window, context);
 	App->moduleloader->Draw(App->program->ID);

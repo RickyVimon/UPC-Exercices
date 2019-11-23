@@ -37,6 +37,8 @@ public:
 
 	void FocusAt(const float3 target);
 
+	void BackToZero();
+
 public:
 	float mov_speed = 0.1f;
 	float rot_speed = 0.015f;
