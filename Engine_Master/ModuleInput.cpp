@@ -123,7 +123,7 @@ update_status ModuleInput::PreUpdate()
 			}
 			else if (extension == "jpg" || extension == "png") 
 			{
-				App->texture->LoadTexture(path.c_str());
+				App->moduleloader->texturesLoaded.insert(App->moduleloader->texturesLoaded.begin(), App->texture->LoadTexture(path.c_str()));
 			}
 			
 			//App->camera->frustum.pos = App->camera->initial_position;

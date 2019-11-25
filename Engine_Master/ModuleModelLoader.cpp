@@ -7,6 +7,7 @@
 #include "assimp/cimport.h"
 #include "assimp/Logger.hpp"
 #include "assimp/DefaultLogger.hpp"
+#include "IMGUI/imgui.h"
 
 
 class myStream : public Assimp::LogStream {
@@ -188,4 +189,28 @@ void ModuleModelLoader::ChangeModel(const char* path)
 	meshes.clear();
 	directory.clear();
 	LoadModel(path);
+}
+
+void ModuleModelLoader::SetImgui() 
+{
+	for (int i = 0; i < meshes.size(); ++i) 
+	{
+		ImGui::Text("Mesh %d:", i);
+		ImGui::BulletText("Num. Vertex: %d", meshes[i]->vertices.size());
+		ImGui::BulletText("Num. Triangles: %d", meshes[i]->vertices.size()/3);
+	}
+
+}
+
+void ModuleModelLoader::SetImguiTextures()
+{
+	for (int i = 0; i < texturesLoaded.size(); ++i) 
+	{
+		ImGui::Image((void*)(intptr_t)texturesLoaded[i].id, ImVec2(200 * 0.5f, 200 * 0.5f), ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::SameLine;
+		ImGui::Text("Width: %d", texturesLoaded[i].width);
+		ImGui::SameLine;
+		ImGui::Text("Height: %d", texturesLoaded[i].height);
+	}
+	
 }

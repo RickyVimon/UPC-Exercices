@@ -26,6 +26,10 @@ public:
 	const aiScene* scene = nullptr;
 	void ChangeModel(const char * path);
 
+	void SetImgui();
+
+	void SetImguiTextures();
+
 private:
 	void processNode(aiNode*, const aiScene*);
 	Mesh processMesh(aiMesh*, const aiScene*);

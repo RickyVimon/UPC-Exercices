@@ -1,5 +1,5 @@
 #include "ModuleTexture.h"
-
+#include "IMGUI/imgui.h"
 ModuleTexture::ModuleTexture()
 {
 }
@@ -49,4 +49,10 @@ Texture ModuleTexture::LoadTexture(const char* path)
 bool ModuleTexture::CleanUp() {
 	ilDeleteImages(1, &imageName);
 	return true;
+}
+
+void ModuleTexture::SetImgui()
+{
+	ImGui::Image((void*)(intptr_t)texture.id, ImVec2(200 * 0.5f, 200 * 0.5f), ImVec2(0, 1), ImVec2(1, 0));
+
 }

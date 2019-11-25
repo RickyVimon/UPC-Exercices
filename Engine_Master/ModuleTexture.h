@@ -23,6 +23,7 @@ public:
 	ILubyte *Data;
 	Texture LoadTexture(const char* path);
 	bool CleanUp();
+	void SetImgui();
 };
 
 #endif

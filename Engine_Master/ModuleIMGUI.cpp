@@ -7,6 +7,8 @@
 #include "IMGUI/examples/imgui_impl_sdl.h"
 #include "ModuleCamera.h"
 #include "ModuleInput.h"
+#include "ModuleModelLoader.h"
+#include "ModuleTexture.h"
 #include "Libraries/MathGeoLib/include/Math/MathAll.h"
 
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
@@ -203,6 +205,31 @@ update_status ModuleIMGUI::Update()
 		if (ScrollToBottom)
 			ImGui::SetScrollHere(1.0f);
 		ScrollToBottom = false;
+		ImGui::End();
+	}
+
+	if (propierties_window = true) {
+		ImGui::Begin("Propierties", &propierties_window);
+		if (ImGui::CollapsingHeader("Transform")) 
+		{
+			float3 translation = float3::zero;
+			float3 rotation = float3::zero;
+			float3 scale = float3::one;
+
+			ImGui::DragFloat3("Translation", &translation[0], NULL, NULL, NULL);
+			ImGui::DragFloat3("Rotation", &rotation[0], NULL, NULL, NULL);
+			ImGui::DragFloat3("Scale", &scale[0], NULL, NULL, NULL);
+
+		}
+		if (ImGui::CollapsingHeader("Geometry")) 
+		{
+			App->moduleloader->SetImgui();
+		}
+		if (ImGui::CollapsingHeader("Textures")) 
+		{
+			App->moduleloader->SetImguiTextures();
+			//App->texture->SetImgui();
+		}
 		ImGui::End();
 	}
 	ImGui::Render();
