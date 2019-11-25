@@ -44,4 +44,6 @@ private:
 	//const Uint8 *keyboard = NULL;
 	KeyState*	keyboard;
 	bool		windowEvents[WE_COUNT];
+
+
 };

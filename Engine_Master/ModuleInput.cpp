@@ -155,5 +155,8 @@ bool ModuleInput::CleanUp()
 
 void ModuleInput::SetImgui()
 {
-
+	ImGuiIO& io = ImGui::GetIO();
+	ImGui::Text("Mouse position: %g, %g", io.MousePos.x, io.MousePos.y);
 }
+		
+
