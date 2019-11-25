@@ -22,7 +22,7 @@ public:
 	bool console_window = false;
 	bool fps_window = false;
 	bool configuration_window = false;
-	bool propierties_window = false;
+	bool properties_window = false;
 	vector <float> fps_log;
 	bool ScrollToBottom = true;
 	ImGuiTextBuffer Buf;

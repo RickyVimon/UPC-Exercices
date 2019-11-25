@@ -31,6 +31,7 @@ public:
 	void SetImguiTextures();
 
 private:
+	bool show_mesh = false;
 	void processNode(aiNode*, const aiScene*);
 	Mesh processMesh(aiMesh*, const aiScene*);
 	std::vector<Texture> loadMaterialTextures(aiMaterial*, aiTextureType, char*);

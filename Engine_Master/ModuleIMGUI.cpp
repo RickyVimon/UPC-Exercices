@@ -48,7 +48,7 @@ bool ModuleIMGUI::Init()
 	//show_demo_window = true;
 	console_window = true;
 	configuration_window = true;
-	propierties_window = true;
+	properties_window = true;
 
 	bool show_another_window = false;
 
@@ -69,26 +69,20 @@ update_status ModuleIMGUI::Update()
 {
 	if (ImGui::BeginMainMenuBar())
 	{
+		ImGui::MenuItem("Configuration", (const char *)0, &configuration_window);
+		ImGui::MenuItem("Properties", (const char *)0, &properties_window);
+		ImGui::MenuItem("Log Console", (const char *)0, &console_window);
+
+	
 		if (ImGui::BeginMenu("About"))
 		{
-			if (ImGui::MenuItem("Author"))
-				LOG("Ricard Vivó Montero");
-			if (ImGui::MenuItem("License"))
-				LOG("Whatever");
-			if (ImGui::MenuItem("Engine"))
-				LOG("AWACHINDOWN IN DA STRIT");
-			ImGui::EndMenu();
-		};
-		if (ImGui::BeginMenu("Tools"))
-		{
-			if (ImGui::MenuItem("Fps graphs"))
-				fps_window = true;
-			if (ImGui::MenuItem("License"))
-				LOG("Whatever");
-			if (ImGui::MenuItem("Engine"))
-				LOG("AWACHINDOWN IN DA STRIT");
-			ImGui::EndMenu();
 
+
+		};
+		if (ImGui::BeginMenu("Quit"))
+		{
+			return UPDATE_STOP;
+			
 		};
 		ImGui::EndMainMenuBar();
 	}
@@ -208,8 +202,8 @@ update_status ModuleIMGUI::Update()
 		ImGui::End();
 	}
 
-	if (propierties_window = true) {
-		ImGui::Begin("Propierties", &propierties_window);
+	if (properties_window) {
+		ImGui::Begin("Properties", &properties_window);
 		if (ImGui::CollapsingHeader("Transform")) 
 		{
 			float3 translation = float3::zero;

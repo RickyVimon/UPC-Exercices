@@ -185,7 +185,6 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 
 void ModuleModelLoader::ChangeModel(const char* path)
 {
-	texturesLoaded.clear();
 	meshes.clear();
 	directory.clear();
 	LoadModel(path);
@@ -204,6 +203,12 @@ void ModuleModelLoader::SetImgui()
 
 void ModuleModelLoader::SetImguiTextures()
 {
+	ImGui::Checkbox("Show Mesh", &show_mesh);
+	if (show_mesh)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	else
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
 	for (int i = 0; i < texturesLoaded.size(); ++i) 
 	{
 		ImGui::Image((void*)(intptr_t)texturesLoaded[i].id, ImVec2(200 * 0.5f, 200 * 0.5f), ImVec2(0, 1), ImVec2(1, 0));

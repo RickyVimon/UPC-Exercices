@@ -121,12 +121,11 @@ update_status ModuleInput::PreUpdate()
 				App->moduleloader->ChangeModel(event.drop.file);
 				App->camera->BackToZero();
 			}
-			else if (extension == "jpg" || extension == "png") 
+			else if (extension == "jpg" || extension == "png" || extension == "jpeg")
 			{
 				App->moduleloader->texturesLoaded.insert(App->moduleloader->texturesLoaded.begin(), App->texture->LoadTexture(path.c_str()));
 			}
 			
-			//App->camera->frustum.pos = App->camera->initial_position;
 			SDL_free(event.drop.file);
 			break;
 		}
