@@ -72,20 +72,40 @@ update_status ModuleIMGUI::Update()
 		ImGui::MenuItem("Configuration", (const char *)0, &configuration_window);
 		ImGui::MenuItem("Properties", (const char *)0, &properties_window);
 		ImGui::MenuItem("Log Console", (const char *)0, &console_window);
-
-	
-		if (ImGui::BeginMenu("About"))
-		{
-
-
-		};
+		ImGui::MenuItem("About", (const char *)0, &about_window);
+		
 		if (ImGui::BeginMenu("Quit"))
 		{
 			return UPDATE_STOP;
 			
 		};
+
 		ImGui::EndMainMenuBar();
 	}
+
+	if (about_window)
+	{
+		ImGui::Begin("About");
+		ImGui::Text("Updated Repository:");
+		if (ImGui::Button("GitHub"))
+		{
+			ShellExecuteA(nullptr, "open", "https://github.com/RickyVimon/UPC-Exercices/tree/master/Engine_Master", nullptr, nullptr, SW_SHOWNORMAL);
+		}
+		ImGui::Separator();
+		ImGui::Text("GNU General Public License v3.0");
+		if (ImGui::Button("License"))
+		{
+			ShellExecuteA(nullptr, "open", "https://github.com/RickyVimon/UPC-Exercices/blob/master/LICENSE", nullptr, nullptr, SW_SHOWNORMAL);
+		}
+		ImGui::Separator();
+		ImGui::Text("Author: Ricard Vivo Montero");
+		if (ImGui::Button("Contact"))
+		{
+			ShellExecuteA(nullptr, "open", "https://no.linkedin.com/in/ricard-vivo-montero-83b049144", nullptr, nullptr, SW_SHOWNORMAL);
+		}
+
+		ImGui::End();
+	};
 
 	if (configuration_window)
 	{
@@ -160,41 +180,16 @@ update_status ModuleIMGUI::Update()
 		}
 		if (ImGui::CollapsingHeader("Input"))
 		{
-
 			App->input->SetImgui();
-
 		}
-		ImGui::End();
-	}
-
-	if (fps_window) {
-		ImGui::Begin("FPS Window", &fps_window);
-		fps_log.push_back(ImGui::GetIO().Framerate);
-		if (fps_log.size() > 50) {
-			char title[50];
-			sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
-			ImGui::PlotHistogram("##framerate", &fps_log[0], fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
-			fps_log.erase(fps_log.begin());
-		}
-		//fps_log.pop_back();
 		ImGui::End();
 	}
 
 	if (console_window) {
-		ImGui::Begin("LOG console", &console_window);
-		
-		if (ImGui::CollapsingHeader("About")) {
-			
-			ImGui::Text("Author: Ricard Vivó Montero");
-			ImGui::BulletText("GitHub: RickyVimon");
-
-		}
-
+		ImGui::Begin("LOG console", &console_window);		
 		ImGui::Text("Custom Log Window. (%s)", IMGUI_VERSION);
 		ImGui::Spacing();
-
 		char title[25] = "Application";
-		//sprintf_s(titile, 25, "Framerate %.1f", 1000.0f/ImGui::GetIO().Framerate,	)
 		ImGui::TextUnformatted(Buf.begin()); 
 		if (ScrollToBottom)
 			ImGui::SetScrollHere(1.0f);
@@ -222,7 +217,6 @@ update_status ModuleIMGUI::Update()
 		if (ImGui::CollapsingHeader("Textures")) 
 		{
 			App->moduleloader->SetImguiTextures();
-			//App->texture->SetImgui();
 		}
 		ImGui::End();
 	}

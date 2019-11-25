@@ -23,6 +23,7 @@ public:
 	bool fps_window = false;
 	bool configuration_window = false;
 	bool properties_window = false;
+	bool about_window = false;
 	vector <float> fps_log;
 	bool ScrollToBottom = true;
 	ImGuiTextBuffer Buf;
