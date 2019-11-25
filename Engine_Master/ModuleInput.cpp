@@ -113,6 +113,7 @@ update_status ModuleInput::PreUpdate()
 			break;
 
 		case SDL_DROPFILE:
+			bool repeated = false;
 			std::string path = event.drop.file;
 			std::string extension = path.substr(path.size() - 3, path.size());
 			//App->moduleloader->meshes.clear();
@@ -122,14 +123,21 @@ update_status ModuleInput::PreUpdate()
 				App->camera->BackToZero();
 			}
 			else if (extension == "jpg" || extension == "png" || extension == "jpeg")
-			{
-				App->moduleloader->texturesLoaded.insert(App->moduleloader->texturesLoaded.begin(), App->texture->LoadTexture(path.c_str()));
+			{				
 				Texture new_texture = App->texture->LoadTexture(path.c_str());
+				
 				for (int i = 0; i < App->moduleloader->meshes.size(); ++i)
 				{
 					App->moduleloader->meshes[i]->textures.insert(App->moduleloader->meshes[i]->textures.begin(), new_texture);
 				}
-				
+				for (int j = 0; j < App->moduleloader->texturesLoaded.size(); ++j)
+				{
+					if (App->moduleloader->texturesLoaded[j].path == path.c_str()) {
+						repeated = true;
+					}
+				}
+				if(!repeated)
+					App->moduleloader->texturesLoaded.insert(App->moduleloader->texturesLoaded.begin(), new_texture);				
 			}
 			
 			SDL_free(event.drop.file);

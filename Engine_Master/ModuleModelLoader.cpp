@@ -8,6 +8,8 @@
 #include "assimp/Logger.hpp"
 #include "assimp/DefaultLogger.hpp"
 #include "IMGUI/imgui.h"
+#include <string>
+#include <io.h>
 
 
 class myStream : public Assimp::LogStream {
@@ -172,9 +174,33 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 				break;
 			}
 		}
-		if (!skip) 
+		if (!skip)
 		{
-			Texture texture = App->texture->LoadTexture(str.C_Str());
+			finalPath = str.C_Str();
+			LOG("Trying to load texture from path: %s\n", str.C_Str());
+			if (FileExists(str.C_Str()))
+			{
+				LOG("Texture loaded from: %s\n", str.C_Str());
+				finalPath = str.C_Str();
+			}
+			else if(FileExists(modelPath.c_str()))
+			{
+				modelPath.append(str.C_Str());
+				LOG("Texture loading from Models Path: %s\n", modelPath.c_str());
+				finalPath = modelPath.c_str();
+			}
+			else
+			{
+				size_t found = finalPath.find_last_of("/\\");
+				directory = finalPath.substr(found + 1);
+				//myTexturesPath.append(finalPath);
+				if (FileExists((myTexturesPath+ directory).c_str()))
+				{
+					LOG("Texture loading from default Textures Path: %s\n", myTexturesPath.c_str());
+					finalPath = directory;
+				}
+			}
+			Texture texture = App->texture->LoadTexture((myTexturesPath + finalPath).c_str());
 			texture.type = typeName;
 			textures.push_back(texture);
 			texturesLoaded.push_back(texture);
@@ -218,4 +244,14 @@ void ModuleModelLoader::SetImguiTextures()
 		ImGui::Text("Height: %d", texturesLoaded[i].height);
 	}
 	
+}
+
+bool ModuleModelLoader::FileExists(const char* path)
+{
+	if (access(path, 0) == -1)
+	{
+		LOG("File does NOT exist in path %s:\n", path);
+		return false;
+	}
+	return true;
 }

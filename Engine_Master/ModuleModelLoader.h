@@ -30,7 +30,13 @@ public:
 
 	void SetImguiTextures();
 
+	bool FileExists(const char * path);
+
 private:
+	//const char* directory = nullptr;
+	std::string modelPath = "Models/";
+	std::string myTexturesPath = "Textures/";
+	std::string finalPath = "";
 	bool show_mesh = false;
 	void processNode(aiNode*, const aiScene*);
 	Mesh processMesh(aiMesh*, const aiScene*);
