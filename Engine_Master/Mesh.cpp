@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include "Application.h"
 #include "ModuleProgram.h"
+#include "ModuleModelLoader.h"
 #include "GL/glew.h"
 #include <string>
 
@@ -93,8 +94,10 @@ void Mesh::Draw(unsigned int program) const
 		else if (name == "texture_height")
 			number = std::to_string(++heightNr);
 		glUniform1i(glGetUniformLocation(program, (name + number).c_str()), i);
-		glBindTexture(GL_TEXTURE_2D, textures[i].id);
 	}
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, App->moduleloader->texturesLoaded[0].id);
+	glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
 	// draw mesh
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
