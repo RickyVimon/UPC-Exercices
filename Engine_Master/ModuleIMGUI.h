@@ -21,6 +21,8 @@ public:
 	bool show_demo_window = false;
 	bool console_window = false;
 	bool fps_window = false;
+	bool configuration_window = false;
+	bool propierties_window = false;
 	vector <float> fps_log;
 	bool ScrollToBottom = true;
 	ImGuiTextBuffer Buf;

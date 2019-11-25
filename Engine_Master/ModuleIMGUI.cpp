@@ -6,6 +6,7 @@
 #include "IMGUI/examples/imgui_impl_opengl3.h"
 #include "IMGUI/examples/imgui_impl_sdl.h"
 #include "ModuleCamera.h"
+#include "ModuleInput.h"
 #include "Libraries/MathGeoLib/include/Math/MathAll.h"
 
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
@@ -42,8 +43,10 @@ bool ModuleIMGUI::Init()
 	ImGui::StyleColorsDark();
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer->context);
 	ImGui_ImplOpenGL3_Init(glsl_version);
-	show_demo_window = true;
+	//show_demo_window = true;
 	console_window = true;
+	configuration_window = true;
+	propierties_window = true;
 
 	bool show_another_window = false;
 
@@ -62,7 +65,111 @@ update_status ModuleIMGUI::PreUpdate()
 // Called every draw update
 update_status ModuleIMGUI::Update()
 {
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::BeginMenu("About"))
+		{
+			if (ImGui::MenuItem("Author"))
+				LOG("Ricard Vivó Montero");
+			if (ImGui::MenuItem("License"))
+				LOG("Whatever");
+			if (ImGui::MenuItem("Engine"))
+				LOG("AWACHINDOWN IN DA STRIT");
+			ImGui::EndMenu();
+		};
+		if (ImGui::BeginMenu("Tools"))
+		{
+			if (ImGui::MenuItem("Fps graphs"))
+				fps_window = true;
+			if (ImGui::MenuItem("License"))
+				LOG("Whatever");
+			if (ImGui::MenuItem("Engine"))
+				LOG("AWACHINDOWN IN DA STRIT");
+			ImGui::EndMenu();
 
+		};
+		ImGui::EndMainMenuBar();
+	}
+
+	if (configuration_window)
+	{
+		ImGui::Begin("Configuration", &configuration_window);
+		//App camera draw editor
+		if (ImGui::CollapsingHeader("Camera")) {
+		
+			App->camera->SetImgui();
+
+		}
+		if (ImGui::CollapsingHeader("Hardware")) {
+
+			char tmp_string[4096];
+
+			ImGui::Text("CPUs:");
+			ImGui::SameLine();
+			int num_cpus = SDL_GetCPUCount();
+			int cpu_cache_line_size = SDL_GetCPUCacheLineSize();
+			sprintf_s(tmp_string, "%d (Cache: %d bytes)", num_cpus, cpu_cache_line_size);
+			ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), tmp_string);
+
+			ImGui::Text("System RAM:");
+			ImGui::SameLine();
+			float system_ram = SDL_GetSystemRAM() / 1000.f;
+			sprintf_s(tmp_string, "%.2f GB", system_ram);
+			ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), tmp_string);
+
+			ImGui::Separator();
+
+			ImGui::Text("GPU:");
+			ImGui::SameLine();
+			sprintf_s(tmp_string, "%s %s", glGetString(GL_VENDOR), glGetString(GL_RENDERER));
+			ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), tmp_string);
+
+			int vram_budget, vram_available;
+			glGetIntegerv(GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX, &vram_budget);
+			glGetIntegerv(GL_GPU_MEMORY_INFO_CURRENT_AVAILABLE_VIDMEM_NVX, &vram_available);
+
+			ImGui::Text("VRAM Budget:");
+			ImGui::SameLine();
+			sprintf_s(tmp_string, "%.2f MB", vram_budget / 1000.f);
+			ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), tmp_string);
+
+			ImGui::Text("VRAM Usage:");
+			ImGui::SameLine();
+			sprintf_s(tmp_string, "%.2f MB", (vram_budget - vram_available) / 1000.f);
+			ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), tmp_string);
+
+			ImGui::Text("VRAM Available:");
+			ImGui::SameLine();
+			sprintf_s(tmp_string, "%.2f MB", vram_available / 1000.f);
+			ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), tmp_string);
+			fps_log.push_back(ImGui::GetIO().Framerate);
+			if (fps_log.size() > 50) {
+				char title[50];
+				sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
+				ImGui::PlotHistogram("##framerate", &fps_log[0], fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
+				fps_log.erase(fps_log.begin());
+			}
+
+		}
+		if (ImGui::CollapsingHeader("Software Versions"))
+		{
+
+			ImGui::Text("Using Glew %s", glewGetString(GLEW_VERSION)); // Should be 2.0
+			ImGui::Text("OpenGL version supported %s", glGetString(GL_VERSION));
+			ImGui::Text("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+			ImGui::Text("DevIL 1.8");
+			ImGui::Text("Assimp 5.0");
+			ImGui::Text("Assimp ImGui 1.73");
+			
+		}
+		if (ImGui::CollapsingHeader("Input"))
+		{
+
+			App->input->SetImgui();
+
+		}
+		ImGui::End();
+	}
 
 	if (fps_window) {
 		ImGui::Begin("FPS Window", &fps_window);
@@ -79,31 +186,7 @@ update_status ModuleIMGUI::Update()
 
 	if (console_window) {
 		ImGui::Begin("LOG console", &console_window);
-		if (ImGui::BeginMainMenuBar()) 
-		{
-			if (ImGui::BeginMenu("About")) 
-			{
-				if (ImGui::MenuItem("Author"))
-					LOG("Ricard Vivó Montero");
-				if (ImGui::MenuItem("License"))
-					LOG("Whatever");
-				if (ImGui::MenuItem("Engine"))
-					LOG("AWACHINDOWN IN DA STRIT");
-				ImGui::EndMenu();
-			};
-			if (ImGui::BeginMenu("Tools")) 
-			{
-				if (ImGui::MenuItem("Fps graphs"))
-					fps_window = true;
-				if (ImGui::MenuItem("License"))
-					LOG("Whatever");
-				if (ImGui::MenuItem("Engine"))
-					LOG("AWACHINDOWN IN DA STRIT");
-				ImGui::EndMenu();
-
-			};
-			ImGui::EndMainMenuBar();
-		}
+		
 		if (ImGui::CollapsingHeader("About")) {
 			
 			ImGui::Text("Author: Ricard Vivó Montero");
@@ -111,22 +194,6 @@ update_status ModuleIMGUI::Update()
 
 		}
 
-		//App camera draw editor
-		if (ImGui::CollapsingHeader("Camera")) {
-
-			if (ImGui::Checkbox("Ground", &App->camera->flag_ground)) {
-
-			}
-			if (ImGui::Checkbox("Axis", &App->camera->flag_axis)) {
-
-			}
-			float fov = App->camera->frustum.verticalFov;
-			if (ImGui::SliderFloat("Vertical FOV", &fov , 0.01f, math::pi, "%.3f", 1.0f))
-			{
-				App->camera->SetFOV(fov);
-			}
-
-		}
 		ImGui::Text("Custom Log Window. (%s)", IMGUI_VERSION);
 		ImGui::Spacing();
 

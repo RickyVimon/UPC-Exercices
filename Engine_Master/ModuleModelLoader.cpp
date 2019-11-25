@@ -5,7 +5,17 @@
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 #include "assimp/cimport.h"
+#include "assimp/Logger.hpp"
+#include "assimp/DefaultLogger.hpp"
 
+
+class myStream : public Assimp::LogStream {
+public:
+	// LOG assimp debug output to GUI console
+	void write(const char *message) {
+		LOG("%s", message);
+	}
+};
 
 ModuleModelLoader::ModuleModelLoader() {}
 
@@ -31,10 +41,17 @@ void ModuleModelLoader::Draw(unsigned int program)
 
 void ModuleModelLoader::LoadModel(const char* path) 
 {
+	// Assimp logger
+	Assimp::DefaultLogger::create("", Assimp::Logger::VERBOSE);
+	Assimp::DefaultLogger::get()->info("this is my info-call");
+	const unsigned int severity = Assimp::Logger::Debugging | Assimp::Logger::Info | Assimp::Logger::Err | Assimp::Logger::Warn;
+	Assimp::DefaultLogger::get()->attachStream(new myStream, severity);
+
+	// Assimp import model
 	Assimp::Importer importer;
 	scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-		LOG("Error loading the file");
+		LOG("Error loading the file:  %s\n", importer.GetErrorString());
 		return;
 	}
 	processNode(scene->mRootNode, scene);

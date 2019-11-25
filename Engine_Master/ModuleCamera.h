@@ -39,6 +39,8 @@ public:
 
 	void BackToZero();
 
+	void SetImgui();
+
 public:
 	float mov_speed = 0.1f;
 	float rot_speed = 0.015f;
@@ -49,6 +51,6 @@ public:
 	float4x4 proj, view, model;
 	float3x3 rotation_matrix;
 	float aspect;
-	float3 initial_position = { -10, 5, -10 };
+	float3 initial_position = { 0, 5, -10 };
 };
 

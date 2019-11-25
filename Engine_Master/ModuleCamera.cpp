@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleWindow.h"
 #include "SDL.h"
+#include "IMGUI/imgui.h"
 
 
 
@@ -38,7 +39,7 @@ bool ModuleCamera::Init()
 	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov * 0.5f) *aspect);
 
 	proj = frustum.ProjectionMatrix();
-	model = float4x4::FromTRS(float3(0.0f, 0.0f, 0.0f), float3x3::RotateY(math::pi / 4.0f), float3(1.0f, 1.0f, 1.0f));
+	model = float4x4::FromTRS(float3(0.0f, 0.0f, 0.0f), float3x3::RotateY(0.0f), float3(1.0f, 1.0f, 1.0f));
 	FocusAt((float3::zero - frustum.pos).Normalized());
 	//view = LookAt(frustum.pos, frustum.pos + frustum.front, frustum.up);
 	return true;
@@ -329,3 +330,18 @@ void ModuleCamera::BackToZero()
 	frustum.pos = initial_position;
 }
 
+void ModuleCamera::SetImgui()
+{
+	if (ImGui::Checkbox("Ground", &flag_ground)) {
+
+	}
+	if (ImGui::Checkbox("Axis", &flag_axis)) {
+
+	}
+	float fov = frustum.verticalFov;
+	if (ImGui::SliderFloat("Vertical FOV", &fov, 0.01f, math::pi-0.1, "%.3f", 0.9f))
+	{
+		SetFOV(fov);
+	}
+	ImGui::Text("Position: X = %.3f, Y = %.3f, Z = %.3f", frustum.pos[0], frustum.pos[1], frustum.pos[2]);
+}

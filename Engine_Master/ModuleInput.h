@@ -32,6 +32,7 @@ public:
 	update_status PreUpdate();
 	update_status Update();
 	bool CleanUp();
+	void SetImgui();
 	KeyState GetKey(int id) const
 	{
 		return keyboard[id];

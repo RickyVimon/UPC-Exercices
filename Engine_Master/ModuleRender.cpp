@@ -33,11 +33,6 @@ bool ModuleRender::Init()
 	context = SDL_GL_CreateContext(App->window->window);
 
 	GLenum err = glewInit(); // … check for errors 
-	LOG("Using Glew %s", glewGetString(GLEW_VERSION)); // Should be 2.0
-	LOG("Vendor: %s", glGetString(GL_VENDOR)); 
-	LOG("Renderer: %s", glGetString(GL_RENDERER)); 
-	LOG("OpenGL version supported %s", glGetString(GL_VERSION)); 
-	LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); 
 	glClearDepth(1.0f); 
