@@ -124,6 +124,12 @@ update_status ModuleInput::PreUpdate()
 			else if (extension == "jpg" || extension == "png" || extension == "jpeg")
 			{
 				App->moduleloader->texturesLoaded.insert(App->moduleloader->texturesLoaded.begin(), App->texture->LoadTexture(path.c_str()));
+				Texture new_texture = App->texture->LoadTexture(path.c_str());
+				for (int i = 0; i < App->moduleloader->meshes.size(); ++i)
+				{
+					App->moduleloader->meshes[i]->textures.insert(App->moduleloader->meshes[i]->textures.begin(), new_texture);
+				}
+				
 			}
 			
 			SDL_free(event.drop.file);

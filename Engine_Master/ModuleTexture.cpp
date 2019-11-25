@@ -11,15 +11,12 @@ ModuleTexture::~ModuleTexture()
 
 bool ModuleTexture::Init()
 {
-
 	ilInit();
 	iluInit();
 	ilutInit();
 	ilutRenderer(ILUT_OPENGL);
 	ilGenImages(1, &imageName);
 	ilBindImage(imageName);
-
-	return true; 
 	return true; 
 }
 
@@ -30,7 +27,7 @@ update_status ModuleTexture::Update()
 
 Texture ModuleTexture::LoadTexture(const char* path) 
 {
-	//Texture texture;
+	Texture texture;
 	ilLoadImage(path);
 	iluGetImageInfo(&imageInfo);
 	if (imageInfo.Origin == IL_ORIGIN_UPPER_LEFT)
@@ -42,6 +39,7 @@ Texture ModuleTexture::LoadTexture(const char* path)
 	texture.height = ilGetInteger(IL_IMAGE_HEIGHT);
 	texture.data = ilGetData();
 	texture.path = path;
+	texture.type = "texture_diffuse";
 
 	return texture;
 }
@@ -49,10 +47,4 @@ Texture ModuleTexture::LoadTexture(const char* path)
 bool ModuleTexture::CleanUp() {
 	ilDeleteImages(1, &imageName);
 	return true;
-}
-
-void ModuleTexture::SetImgui()
-{
-	ImGui::Image((void*)(intptr_t)texture.id, ImVec2(200 * 0.5f, 200 * 0.5f), ImVec2(0, 1), ImVec2(1, 0));
-
 }
