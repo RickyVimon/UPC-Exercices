@@ -6,6 +6,7 @@
 #include "Mesh.h"
 #include "assimp/scene.h"
 #include <vector>
+#include "Model.h"
 
 struct aiScene;
 
@@ -15,6 +16,9 @@ public:
 	std::vector<Texture> texturesLoaded;
 	std::vector<Mesh*> meshes;
 	std::string directory;
+	std::vector<Model> loadedModels;
+	Model activeModel;
+
 
 	ModuleModelLoader();
 	~ModuleModelLoader();

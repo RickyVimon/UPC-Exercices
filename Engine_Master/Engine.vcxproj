@@ -97,6 +97,7 @@
     <ClInclude Include="Libraries\MathGeoLib\include\Geometry\TriangleMesh.h" />
     <ClInclude Include="Libraries\MathGeoLib\include\MathBuildConfig.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleCamera.h" />
     <ClInclude Include="ModuleIMGUI.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModuleCamera.cpp" />
     <ClCompile Include="ModuleIMGUI.cpp" />
     <ClCompile Include="ModuleInput.cpp" />

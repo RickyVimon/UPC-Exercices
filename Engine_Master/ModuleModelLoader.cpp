@@ -10,6 +10,7 @@
 #include "IMGUI/imgui.h"
 #include <string>
 #include <io.h>
+#include "Model.h"
 
 
 class myStream : public Assimp::LogStream {
@@ -57,6 +58,7 @@ void ModuleModelLoader::LoadModel(const char* path)
 		LOG("Error loading the file:  %s\n", importer.GetErrorString());
 		return;
 	}
+	//TODO: check if path of the model to be loaded is alredy one of the models alredy loaded on the scene
 	processNode(scene->mRootNode, scene);
 }
 
@@ -66,6 +68,7 @@ void ModuleModelLoader::processNode(aiNode *node, const aiScene *scene)
 {
 	for (unsigned int i = 0; i < node->mNumMeshes; i++) 
 	{
+		
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 		meshes.push_back(new Mesh(processMesh(mesh, scene)));
 	}
@@ -183,24 +186,29 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 				LOG("Texture loaded from: %s\n", str.C_Str());
 				finalPath = str.C_Str();
 			}
-			else if(FileExists(modelPath.c_str()))
-			{
-				modelPath.append(str.C_Str());
-				LOG("Texture loading from Models Path: %s\n", modelPath.c_str());
-				finalPath = modelPath.c_str();
-			}
 			else
 			{
 				size_t found = finalPath.find_last_of("/\\");
 				directory = finalPath.substr(found + 1);
-				//myTexturesPath.append(finalPath);
-				if (FileExists((myTexturesPath+ directory).c_str()))
+				if (FileExists((modelPath + directory).c_str()))
 				{
-					LOG("Texture loading from default Textures Path: %s\n", myTexturesPath.c_str());
-					finalPath = directory;
+					finalPath = (modelPath + directory).c_str();
+					LOG("Texture loading from Models Path: %s\n", finalPath.c_str());
+					
+				}
+				else
+				{
+					
+					//myTexturesPath.append(finalPath);
+					if (FileExists((myTexturesPath + directory).c_str()))
+					{
+						finalPath = (myTexturesPath + directory).c_str();
+						LOG("Texture loading from default Textures Path: %s\n", finalPath.c_str());
+					}
 				}
 			}
-			Texture texture = App->texture->LoadTexture((myTexturesPath + finalPath).c_str());
+				
+			Texture texture = App->texture->LoadTexture(finalPath.c_str());
 			texture.type = typeName;
 			textures.push_back(texture);
 			texturesLoaded.push_back(texture);

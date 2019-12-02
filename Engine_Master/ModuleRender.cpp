@@ -68,6 +68,7 @@ update_status ModuleRender::Update()
 	//glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
 	SDL_GL_MakeCurrent(App->window->window, context);
 	App->moduleloader->Draw(App->program->ID);
+	//App->moduleloader->activeModel->Draw(App->program->ID);
 	return UPDATE_CONTINUE;
 }
 
