@@ -58,13 +58,25 @@ void ModuleModelLoader::LoadModel(const char* path)
 		return;
 	}
 	//TODO: check if path of the model to be loaded is alredy one of the models alredy loaded on the scene
-	Model model;
-	processNode(scene->mRootNode, scene, &model);
+	bool skip = false;
+	std::string name = path;
+	size_t found = name.find_last_of("/\\");
+	name = name.substr(found + 1);
+	Model model(name.c_str());
 	for (int i = 0; i < loadedModels.size(); ++i) {
 		loadedModels[i].active = false;
+		if (loadedModels[i].name == name)
+		{
+			loadedModels[i].active = true;
+			skip = true;
+		}
 	}
-	model.active = true;
-	loadedModels.push_back(model);
+	if (!skip)
+	{
+		processNode(scene->mRootNode, scene, &model);
+		model.active = true;
+		loadedModels.push_back(model);
+	}
 }
 
 

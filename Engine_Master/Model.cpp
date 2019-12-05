@@ -8,6 +8,11 @@ Model::Model()
 {
 }
 
+Model::Model(const char *name)
+{
+	this->name = name;
+}
+
 
 Model::~Model()
 {

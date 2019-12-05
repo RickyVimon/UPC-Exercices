@@ -45,6 +45,7 @@ private:
 	std::string myTexturesPath = "Textures/";
 	std::string finalPath = "";
 	bool show_mesh = false;
+	bool skip = false;
 	void processNode(aiNode*, const aiScene*, Model* model);
 	Mesh processMesh(aiMesh*, const aiScene*);
 	std::vector<Texture> loadMaterialTextures(aiMaterial*, aiTextureType, char*);

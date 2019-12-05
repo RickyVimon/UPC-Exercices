@@ -9,6 +9,7 @@ class Model
 {
 public:
 	Model();
+	Model(const char * name);
 	~Model();
 	void Draw(unsigned int program);
 	update_status Update();
