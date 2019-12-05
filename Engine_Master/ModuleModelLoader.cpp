@@ -87,7 +87,7 @@ void ModuleModelLoader::processNode(aiNode *node, const aiScene *scene, Model* m
 	{
 		
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-		meshes.push_back(new Mesh(processMesh(mesh, scene)));
+		//meshes.push_back(new Mesh(processMesh(mesh, scene)));
 		model->meshes.push_back(new Mesh(processMesh(mesh, scene)));
 	}
 

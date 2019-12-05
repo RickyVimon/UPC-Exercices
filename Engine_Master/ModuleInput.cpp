@@ -126,19 +126,26 @@ update_status ModuleInput::PreUpdate()
 			{				
 				Texture new_texture = App->texture->LoadTexture(path.c_str());
 				
-				for (int i = 0; i < App->moduleloader->meshes.size(); ++i)
+				for (int i = 0; i < App->moduleloader->loadedModels.size(); ++i)
 				{
-					App->moduleloader->meshes[i]->textures.insert(App->moduleloader->meshes[i]->textures.begin(), new_texture);
+					for (int k = 0; k < App->moduleloader->loadedModels[i].meshes.size(); ++k)
+					{
+						if (App->moduleloader->loadedModels[i].active)
+							App->moduleloader->loadedModels[i].meshes[k]->textures.insert(App->moduleloader->loadedModels[i].meshes[k]->textures.begin(), new_texture);
+					}
+					
 				}
-				for (int j = 0; j < App->moduleloader->texturesLoaded.size(); ++j)
+				/*for (int j = 0; j < App->moduleloader->texturesLoaded.size(); ++j)
 				{
 					if (App->moduleloader->texturesLoaded[j].path == path.c_str()) {
 						repeated = true;
 					}
 				}
 				if(!repeated)
-					App->moduleloader->texturesLoaded.insert(App->moduleloader->texturesLoaded.begin(), new_texture);				
+					App->moduleloader->texturesLoaded.insert(App->moduleloader->texturesLoaded.begin(), new_texture);	
+					*/
 			}
+			
 			
 			SDL_free(event.drop.file);
 			break;
