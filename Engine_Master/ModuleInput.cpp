@@ -64,7 +64,6 @@ update_status ModuleInput::PreUpdate()
 
 	SDL_PumpEvents();
 	static SDL_Event event;
-	//SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
@@ -113,10 +112,8 @@ update_status ModuleInput::PreUpdate()
 			break;
 
 		case SDL_DROPFILE:
-			bool repeated = false;
 			std::string path = event.drop.file;
 			std::string extension = path.substr(path.size() - 3, path.size());
-			//App->moduleloader->meshes.clear();
 			if (extension == "fbx")
 			{
 				App->moduleloader->LoadModel(event.drop.file);
@@ -132,21 +129,9 @@ update_status ModuleInput::PreUpdate()
 					{
 						if (App->moduleloader->loadedModels[i].active)
 							App->moduleloader->loadedModels[i].meshes[k]->textures.insert(App->moduleloader->loadedModels[i].meshes[k]->textures.begin(), new_texture);
-					}
-					
+					}					
 				}
-				/*for (int j = 0; j < App->moduleloader->texturesLoaded.size(); ++j)
-				{
-					if (App->moduleloader->texturesLoaded[j].path == path.c_str()) {
-						repeated = true;
-					}
-				}
-				if(!repeated)
-					App->moduleloader->texturesLoaded.insert(App->moduleloader->texturesLoaded.begin(), new_texture);	
-					*/
-			}
-			
-			
+			}				
 			SDL_free(event.drop.file);
 			break;
 		}

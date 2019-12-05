@@ -97,7 +97,14 @@ void Mesh::Draw(unsigned int program) const
 	}
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textures[0].id);
-	glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
+	glUniform1i(glGetUniformLocation(App->program->ID, "texture_diffuse"), 0);
+
+	/*
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, textures[1].id);
+	glUniform1i(glGetUniformLocation(App->program->ID, "texture_specular"), 1);
+	*/
+
 	// draw mesh
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);

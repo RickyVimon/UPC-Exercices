@@ -241,6 +241,11 @@ void ModuleModelLoader::SetImgui()
 	for (int j = 0; j < loadedModels.size(); ++j)
 	{
 		ImGui::Text("Model %d:", j);
+		ImGui::SameLine;
+		ImGui::PushID(j);
+		ImGui::Checkbox("Active", &loadedModels[j].active);
+		ImGui::PopID();
+
 		for (int i = 0; i < loadedModels[j].meshes.size(); ++i)
 		{
 			ImGui::Text("Mesh %d:", i);
