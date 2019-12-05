@@ -84,6 +84,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="ComponentMaterial.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Libraries\IMGUI\examples\imgui_impl_opengl3.h" />
     <ClInclude Include="Libraries\IMGUI\examples\imgui_impl_sdl.h" />
@@ -112,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="ComponentMaterial.cpp" />
     <ClCompile Include="Libraries\IMGUI\examples\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Libraries\IMGUI\examples\imgui_impl_sdl.cpp" />
     <ClCompile Include="Libraries\IMGUI\imgui.cpp" />
