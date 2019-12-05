@@ -31,14 +31,16 @@ public:
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 	std::vector<Texture> textures;
+	Mesh();
 	Mesh(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, std::vector<Texture>& textures);
 	~Mesh();
 	void Init();
 	void Draw(unsigned int program) const;
+	void setupMesh();
 
 private:
 	unsigned int VAO, VBO, EBO;
-	void setupMesh();
+
 };
 
 #endif __Mesh_H__

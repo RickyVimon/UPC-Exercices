@@ -15,6 +15,12 @@ Mesh::Mesh(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, st
 }
 
 
+Mesh::Mesh()
+{
+}
+
+
+
 Mesh::~Mesh()
 {
 	vertices.clear();
