@@ -38,7 +38,7 @@ Texture ModuleTexture::LoadTexture(const char* path)
 	texture.width = ilGetInteger(IL_IMAGE_WIDTH);
 	texture.height = ilGetInteger(IL_IMAGE_HEIGHT);
 	texture.data = ilGetData();
-	texture.path = path;
+	texture.name = path;
 	texture.type = "texture_diffuse";
 
 	return texture;

@@ -186,9 +186,12 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 		aiString str;
 		mat->GetTexture(type, i, &str);
 		bool skip = false;
+		finalPath = str.C_Str();
+		size_t found = finalPath.find_last_of("/\\");
+		std::string name = finalPath.substr(found + 1);
 		for (unsigned int j = 0; j < texturesLoaded.size(); j++) 
 		{
-			if (std::strcmp(texturesLoaded[j].path, str.C_Str()) == 0)
+			if (std::strcmp(texturesLoaded[j].name, name.c_str()) == 0)
 			{
 				textures.push_back(texturesLoaded[j]);
 				skip = true;
@@ -197,7 +200,6 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 		}
 		if (!skip)
 		{
-			finalPath = str.C_Str();
 			LOG("Trying to load texture from path: %s\n", str.C_Str());
 			if (FileExists(str.C_Str()))
 			{
@@ -206,11 +208,9 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 			}
 			else
 			{
-				size_t found = finalPath.find_last_of("/\\");
-				directory = finalPath.substr(found + 1);
-				if (FileExists((modelPath + directory).c_str()))
+				if (FileExists((modelPath + name).c_str()))
 				{
-					finalPath = (modelPath + directory).c_str();
+					finalPath = (modelPath + name).c_str();
 					LOG("Texture loading from Models Path: %s\n", finalPath.c_str());
 					
 				}
@@ -218,9 +218,9 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 				{
 					
 					//myTexturesPath.append(finalPath);
-					if (FileExists((myTexturesPath + directory).c_str()))
+					if (FileExists((myTexturesPath + name).c_str()))
 					{
-						finalPath = (myTexturesPath + directory).c_str();
+						finalPath = (myTexturesPath + name).c_str();
 						LOG("Texture loading from default Textures Path: %s\n", finalPath.c_str());
 					}
 				}
@@ -238,11 +238,15 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 
 void ModuleModelLoader::SetImgui() 
 {
-	for (int i = 0; i < meshes.size(); ++i) 
+	for (int j = 0; j < loadedModels.size(); ++j)
 	{
-		ImGui::Text("Mesh %d:", i);
-		ImGui::BulletText("Num. Vertex: %d", meshes[i]->vertices.size());
-		ImGui::BulletText("Num. Triangles: %d", meshes[i]->vertices.size()/3);
+		ImGui::Text("Model %d:", j);
+		for (int i = 0; i < loadedModels[j].meshes.size(); ++i)
+		{
+			ImGui::Text("Mesh %d:", i);
+			ImGui::BulletText("Num. Vertex: %d", loadedModels[j].meshes[i]->vertices.size());
+			ImGui::BulletText("Num. Triangles: %d", loadedModels[j].meshes[i]->vertices.size() / 3);
+		}
 	}
 
 }

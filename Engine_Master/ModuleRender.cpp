@@ -65,12 +65,10 @@ update_status ModuleRender::PreUpdate()
 update_status ModuleRender::Update()
 {
 	SDL_GL_MakeCurrent(App->window->window, context);
-	//App->moduleloader->Draw(App->program->ID);
 	for (int i = 0; i < App->moduleloader->loadedModels.size(); ++i) {
 		if (App->moduleloader->loadedModels[i].active)
 			App->moduleloader->loadedModels[i].Draw(App->program->ID);
 	}
-	//App->moduleloader->activeModel->Draw(App->program->ID);
 	return UPDATE_CONTINUE;
 }
 

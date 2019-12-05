@@ -17,7 +17,7 @@ public:
 public:
 	std::string name;
 	std::vector<Mesh*> meshes;
-	std::vector<Texture*> textures;
+	std::vector<Texture*> textures; //pointer to each texture of each mesh
 	bool active = false;
 
 };

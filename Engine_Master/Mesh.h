@@ -10,7 +10,7 @@
 struct Texture {
 	unsigned int id;
 	char*  type;
-	const char* path;
+	const char* name;
 	int width;
 	int height;
 	unsigned char *data;
