@@ -29,14 +29,9 @@ public:
 	void LoadModel(const char*);
 	void Draw(unsigned int program);
 	const aiScene* scene = nullptr;
-	void ChangeModel(const char * path);
-
 	void SetImgui();
-
 	void SetImguiTextures();
-
 	bool FileExists(const char * path);
-
 	void SetActiveModel(Model * model);
 
 private:

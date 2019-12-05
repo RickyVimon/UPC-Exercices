@@ -57,7 +57,7 @@ void ModuleModelLoader::LoadModel(const char* path)
 		LOG("Error loading the file:  %s\n", importer.GetErrorString());
 		return;
 	}
-	//TODO: check if path of the model to be loaded is alredy one of the models alredy loaded on the scene
+	//Check if path of the model to be loaded is alredy one of the models alredy loaded on the scene
 	bool skip = false;
 	std::string name = path;
 	size_t found = name.find_last_of("/\\");
@@ -235,12 +235,6 @@ std::vector<Texture> ModuleModelLoader::loadMaterialTextures(aiMaterial *mat, ai
 	return textures;
 }
 
-void ModuleModelLoader::ChangeModel(const char* path)
-{
-	meshes.clear();
-	directory.clear();
-	LoadModel(path);
-}
 
 void ModuleModelLoader::SetImgui() 
 {
@@ -261,14 +255,35 @@ void ModuleModelLoader::SetImguiTextures()
 	else
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	for (int i = 0; i < texturesLoaded.size(); ++i) 
+	for (int i = 0; i < loadedModels.size(); ++i)
+	{
+		if (loadedModels[i].active)
+		{
+			ImGui::Text("Model %d: %s", i, loadedModels[i].name.c_str());
+			for (int j = 0; j < loadedModels[i].meshes.size(); ++j)
+			{
+				ImGui::BulletText("Mesh %d: ", j);
+				for (int k = 0; k < loadedModels[i].meshes[j]->textures.size(); ++k)
+				{
+					ImGui::Image((void*)(intptr_t)loadedModels[i].meshes[j]->textures[k].id, ImVec2(200 * 0.5f, 200 * 0.5f), ImVec2(0, 1), ImVec2(1, 0));
+					ImGui::SameLine;
+					ImGui::Text("Width: %d", loadedModels[i].meshes[j]->textures[k].width);
+					ImGui::SameLine;
+					ImGui::Text("Height: %d", loadedModels[i].meshes[j]->textures[k].height);
+				}
+				
+			}
+			
+		}
+	}
+	/*for (int i = 0; i < texturesLoaded.size(); ++i) 
 	{
 		ImGui::Image((void*)(intptr_t)texturesLoaded[i].id, ImVec2(200 * 0.5f, 200 * 0.5f), ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::SameLine;
 		ImGui::Text("Width: %d", texturesLoaded[i].width);
 		ImGui::SameLine;
 		ImGui::Text("Height: %d", texturesLoaded[i].height);
-	}
+	}*/
 	
 }
 

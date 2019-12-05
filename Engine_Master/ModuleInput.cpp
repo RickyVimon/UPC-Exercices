@@ -119,7 +119,7 @@ update_status ModuleInput::PreUpdate()
 			//App->moduleloader->meshes.clear();
 			if (extension == "fbx")
 			{
-				App->moduleloader->ChangeModel(event.drop.file);
+				App->moduleloader->LoadModel(event.drop.file);
 				App->camera->BackToZero();
 			}
 			else if (extension == "jpg" || extension == "png" || extension == "jpeg")
