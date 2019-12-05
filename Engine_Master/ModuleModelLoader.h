@@ -8,6 +8,7 @@
 #include <vector>
 #include "Model.h"
 
+
 struct aiScene;
 
 class ModuleModelLoader : public Module
@@ -17,7 +18,7 @@ public:
 	std::vector<Mesh*> meshes;
 	std::string directory;
 	std::vector<Model> loadedModels;
-	Model activeModel;
+	Model *activeModel;
 
 
 	ModuleModelLoader();
@@ -36,13 +37,15 @@ public:
 
 	bool FileExists(const char * path);
 
+	void SetActiveModel(Model * model);
+
 private:
 	//const char* directory = nullptr;
 	std::string modelPath = "Models/";
 	std::string myTexturesPath = "Textures/";
 	std::string finalPath = "";
 	bool show_mesh = false;
-	void processNode(aiNode*, const aiScene*);
+	void processNode(aiNode*, const aiScene*, Model* model);
 	Mesh processMesh(aiMesh*, const aiScene*);
 	std::vector<Texture> loadMaterialTextures(aiMaterial*, aiTextureType, char*);
 };

@@ -1,4 +1,6 @@
 #include "Model.h"
+#include "Application.h"
+#include "ModuleProgram.h"
 
 
 
@@ -19,11 +21,10 @@ void Model::Draw(unsigned int program)
 
 update_status Model::Update()
 {
-	/*if (active)
+	if (active)
 	{
-		SDL_GL_MakeCurrent(App->window->window, context);
 		Draw(App->program->ID);
-	}*/
+	}
 
 	return UPDATE_CONTINUE;
 }

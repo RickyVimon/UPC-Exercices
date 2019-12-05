@@ -8,6 +8,7 @@
 #include "ModuleProgram.h"
 #include "ModuleCamera.h"
 #include "ModuleTexture.h"
+#include "Model.h"
 
 ModuleRender::ModuleRender()
 {
@@ -63,11 +64,12 @@ update_status ModuleRender::PreUpdate()
 // Called every draw update
 update_status ModuleRender::Update()
 {
-	//glActiveTexture(GL_TEXTURE0);
-	//glBindTexture(GL_TEXTURE_2D, App->texture->texture.id);
-	//glUniform1i(glGetUniformLocation(App->program->ID, "texture0"), 0);
 	SDL_GL_MakeCurrent(App->window->window, context);
-	App->moduleloader->Draw(App->program->ID);
+	//App->moduleloader->Draw(App->program->ID);
+	for (int i = 0; i < App->moduleloader->loadedModels.size(); ++i) {
+		if (App->moduleloader->loadedModels[i].active)
+			App->moduleloader->loadedModels[i].Draw(App->program->ID);
+	}
 	//App->moduleloader->activeModel->Draw(App->program->ID);
 	return UPDATE_CONTINUE;
 }
