@@ -3,7 +3,7 @@
 #include "glew-2.1.0-win32/glew-2.1.0/include/GL/glew.h"
 #include "Application.h"
 #include "ModuleProgram.h"
-#include "msTimer.h"
+#include "ModuleTimer.h"
 #include "ModuleInput.h"
 #include "ModuleWindow.h"
 #include "SDL.h"
@@ -27,8 +27,6 @@ bool ModuleCamera::Init()
 	SDL_GetWindowSize(App->window->window, &windowWidth, &windowHeight);
 	aspect = (float)windowWidth / windowHeight;
 
-	msTimer timer;
-	timer.Start();
 	frustum.type = FrustumType::PerspectiveFrustum;
 	frustum.pos = initial_position;
 	frustum.front = -float3::unitZ;

@@ -7,7 +7,7 @@
 #include "ModuleProgram.h"
 #include "ModuleCamera.h"
 #include "ModuleTexture.h"
-#include "msTimer.h"
+#include "ModuleTimer.h"
 #include "ModuleModelLoader.h"
 using namespace std;
 
@@ -22,6 +22,7 @@ Application::Application()
 	modules.push_back(moduleloader = new ModuleModelLoader());
 	modules.push_back(camera = new ModuleCamera());
 	modules.push_back(imgui = new ModuleIMGUI());
+	modules.push_back(timer = new ModuleTimer());
 }
 
 Application::~Application()
@@ -34,14 +35,11 @@ Application::~Application()
 
 bool Application::Init()
 {
-	msTimer timer;
-	timer.Start();
 	bool ret = true;
 
 	for(list<Module*>::iterator it = modules.begin(); it != modules.end() && ret; ++it)
 		ret = (*it)->Init();
 
-	timer.Read();
 
 	return ret;
 }

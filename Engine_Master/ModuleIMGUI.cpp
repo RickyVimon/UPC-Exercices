@@ -9,6 +9,7 @@
 #include "ModuleInput.h"
 #include "ModuleModelLoader.h"
 #include "ModuleTexture.h"
+#include "ModuleTimer.h"
 #include "Libraries/MathGeoLib/include/Math/MathAll.h"
 
 #if defined(IMGUI_IMPL_OPENGL_LOADER_GL3W)
@@ -49,6 +50,7 @@ bool ModuleIMGUI::Init()
 	console_window = true;
 	configuration_window = true;
 	properties_window = true;
+	timer_window = true;
 
 	bool show_another_window = false;
 
@@ -72,6 +74,7 @@ update_status ModuleIMGUI::Update()
 		ImGui::MenuItem("Configuration", (const char *)0, &configuration_window);
 		ImGui::MenuItem("Properties", (const char *)0, &properties_window);
 		ImGui::MenuItem("Log Console", (const char *)0, &console_window);
+		ImGui::MenuItem("Timer", (const char *)0, &timer_window);
 		ImGui::MenuItem("About", (const char *)0, &about_window);
 		
 		if (ImGui::BeginMenu("Quit"))
@@ -81,6 +84,12 @@ update_status ModuleIMGUI::Update()
 		};
 
 		ImGui::EndMainMenuBar();
+	}
+
+	if (timer_window) {
+		ImGui::Begin("Timer");
+		App->timer->ShowTimerUI();
+		ImGui::End();
 	}
 
 	if (about_window)

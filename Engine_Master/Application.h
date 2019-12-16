@@ -14,6 +14,7 @@ class ModuleTexture;
 class ModuleProgram;
 class ModuleCamera;
 class ModuleModelLoader;
+class ModuleTimer;
 
 class Application
 {
@@ -35,6 +36,7 @@ public:
 	ModuleCamera* camera = nullptr;
 	ModuleIMGUI* imgui = nullptr;
 	ModuleModelLoader* moduleloader = nullptr;
+	ModuleTimer* timer = nullptr;
 
 private:
 

@@ -125,12 +125,12 @@
     </ClCompile>
     <ClCompile Include="ModuleCamera.cpp" />
     <ClCompile Include="ModuleTexture.cpp" />
-    <ClCompile Include="msTimer.cpp" />
     <ClCompile Include="usTimer.cpp" />
     <ClCompile Include="ModuleModelLoader.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ComponentMaterial.cpp" />
+    <ClCompile Include="ModuleTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -176,12 +176,12 @@
     </ClInclude>
     <ClInclude Include="ModuleCamera.h" />
     <ClInclude Include="ModuleTexture.h" />
-    <ClInclude Include="msTimer.h" />
     <ClInclude Include="usTimer.h" />
     <ClInclude Include="ModuleModelLoader.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ComponentMaterial.h" />
+    <ClInclude Include="ModuleTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

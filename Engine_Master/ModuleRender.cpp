@@ -97,6 +97,13 @@ bool ModuleRender::Init()
 	glFrontFace(GL_CCW); 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_DEBUG_OUTPUT);
+	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+	//glDebugMessageCallback(openglCallbackFunction, nullptr);
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true);
+
+
+	
 	App->moduleloader->LoadModel("Models/BakerHouse.fbx");
 	return true;
 }
