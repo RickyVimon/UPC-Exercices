@@ -76,6 +76,7 @@ void ModuleModelLoader::LoadModel(const char* path)
 		processNode(scene->mRootNode, scene, &model);
 		model.active = true;
 		loadedModels.push_back(model);
+		model.ComputeBoundingBox();
 	}
 }
 

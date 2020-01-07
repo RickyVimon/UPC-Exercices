@@ -36,6 +36,7 @@ public:
 	~Mesh();
 	void Init();
 	void Draw(unsigned int program) const;
+	void BoundingBox();
 	void setupMesh();
 
 private:
