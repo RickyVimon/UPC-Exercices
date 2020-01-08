@@ -15,6 +15,7 @@ class ModuleProgram;
 class ModuleCamera;
 class ModuleModelLoader;
 class ModuleTimer;
+class ModuleScene;
 
 class Application
 {
@@ -37,6 +38,7 @@ public:
 	ModuleIMGUI* imgui = nullptr;
 	ModuleModelLoader* moduleloader = nullptr;
 	ModuleTimer* timer = nullptr;
+	ModuleScene* scene = nullptr;
 
 private:
 

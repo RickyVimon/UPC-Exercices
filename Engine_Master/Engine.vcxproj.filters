@@ -129,8 +129,11 @@
     <ClCompile Include="ModuleModelLoader.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="ComponentMaterial.cpp" />
     <ClCompile Include="ModuleTimer.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="ModuleScene.cpp" />
+    <ClCompile Include="Components\ComponentMesh.cpp" />
+    <ClCompile Include="Components\ComponentMaterial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -180,8 +183,12 @@
     <ClInclude Include="ModuleModelLoader.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="ComponentMaterial.h" />
     <ClInclude Include="ModuleTimer.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ModuleScene.h" />
+    <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\ComponentMesh.h" />
+    <ClInclude Include="Components\ComponentMaterial.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

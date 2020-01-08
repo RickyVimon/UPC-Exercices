@@ -104,7 +104,7 @@ bool ModuleRender::Init()
 
 
 	
-	App->moduleloader->LoadModel("Models/BakerHouse.fbx");
+	
 	return true;
 }
 

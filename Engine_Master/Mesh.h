@@ -1,7 +1,6 @@
 #ifndef _MESH_H_
 #define _MESH_H_	
 #include "Globals.h"
-#include "Module.h"
 #include <string>
 #include <vector>
 #include "MathGeoLib/include/Math/float3.h"
